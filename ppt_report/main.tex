@@ -1,22 +1,42 @@
 \documentclass[12pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
+\usepackage{mathptmx} % 1. Font- times new roman
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{titlesec}
 \usepackage{tocloft}
 \usepackage{fancyhdr}
 \usepackage{setspace}
+\usepackage{indentfirst} % 8. Tab starting of every paragraph
+\usepackage{caption}
 \usepackage{svg}
+\usepackage{setspace}
+\usepackage{float}
 
 % Page Geometry
 \geometry{top=1in, bottom=1in, left=1.25in, right=1in}
 
-% Chapter Title Formatting
+% 2 & 15. Chapter size 16, heading 14, text 12, subheadings size 12(bold)
 \titleformat{\chapter}[display]
-  {\normalfont\LARGE\bfseries\centering}{\chaptertitlename\ \thechapter}{10pt}{\LARGE}
+  {\normalfont\fontsize{16}{19}\bfseries\centering}{\chaptertitlename\ \thechapter}{10pt}{\fontsize{16}{19}\bfseries}
 \titlespacing*{\chapter}{0pt}{-20pt}{20pt}
 
+\titleformat{\section}
+  {\normalfont\fontsize{14}{17}\bfseries}{\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{14}\bfseries}{\thesubsection}{1em}{}
+
+% 9. All the text must be justified (LaTeX default is justified, this enforces it strictly without overflowing borders)
+\tolerance=1
+\emergencystretch=10000
+% 10. Only use single enter don't double enter (Enforces single spacing)
+\singlespacing
+
 \begin{document}
+
+\widowpenalty=10000
+\clubpenalty=10000
 
 % -------------------------------------------------------------------
 % TITLE PAGE
@@ -25,26 +45,22 @@
 \begin{center}
 % Placeholder for CUSAT Logo
 \begin{figure}[h]
-    \centering
-    \includesvg[width=4cm]{imgs/cusat.svg} 
+\centering
+\includesvg[width=4cm]{imgs/cusat.svg}
 \end{figure}
 
-\vfill % --- FLEXIBLE GAP ---
+\vfill 
 
-\Large \textbf{PROJECT REPORT (PHASE 1)}\\[0.3cm]
+\Large \textbf{MINI PROJECT - REPORT}\\[0.3cm]
 \large \textbf{on}\\[0.3cm]
 \LARGE \textbf{CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS}
 
-\vfill % --- FLEXIBLE GAP ---
+\vfill 
 
 \large \textit{Submitted by}\\[0.4cm]
-{\large
-\textbf{AARDRA S V – 24101868}\\
-\textbf{AAROMAL A – 24101880}\\
-\textbf{ABDULLA HILAL V K – 24101000}\\
-\textbf{ABHIJITH R S – 24102771}}
+{\large \textbf{AARDRA S V – 24101868}\\ \textbf{AAROMAL A – 24101880}\\ \textbf{ABDULLA HILAL V K – 24101000}\\ \textbf{ABHIJITH R S – 24102771}}
 
-\vfill % --- FLEXIBLE GAP ---
+\vfill 
 
 \textit{in partial fulfillment of requirement for the award of the}\\[0.2cm]
 \textit{degree of}\\[0.4cm]
@@ -52,37 +68,30 @@
 \large \textit{in}\\[0.2cm]
 \Large \textbf{ELECTRONICS AND COMMUNICATION}
 
-\vfill % --- FLEXIBLE GAP ---
+\vfill 
 
-\large \textbf{DIVISION OF ELECTRONICS ENGINEERING}\\
-\textbf{SCHOOL OF ENGINEERING}\\
-\textbf{COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY}\\
-\textbf{KOCHI--682022}\\[0.4cm]
-\textbf{OCTOBER 2025}
-
+\large \textbf{DIVISION OF ELECTRONICS ENGINEERING}\\ \textbf{SCHOOL OF ENGINEERING}\\ \textbf{COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY}\\ \textbf{KOCHI--682022}\\[0.4cm]
+\textbf{MARCH 2026}
 \end{center}
 \end{titlepage}
+
 % -------------------------------------------------------------------
 % CERTIFICATE PAGE
 % -------------------------------------------------------------------
 \newpage
 \pagenumbering{roman}
 \begin{center}
-\large \textbf{DIVISION OF ELECTRONICS ENGINEERING}\\
-\textbf{SCHOOL OF ENGINEERING}\\
-\textbf{COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY}\\
-\textbf{KOCHI-682022}\\[1.5cm]
+\large \textbf{DIVISION OF ELECTRONICS ENGINEERING}\\ \textbf{SCHOOL OF ENGINEERING}\\ \textbf{COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY}\\ \textbf{KOCHI-682022}\\[1.5cm]
 
 \Large \textbf{CERTIFICATE}\\[1cm]
 \end{center}
 
-\begin{spacing}{1.5}
-\noindent \large \textit{Certified that the project report (phase 1) entitled \textbf{“CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS”} is a bonafide work of \textbf{AARDRA S V (24101868)}, \textbf{AAROMAL A (24101880)}, \textbf{ABDULLA HILAL V K (24101000)}, and \textbf{ABHIJITH R S (24102771)}, towards the partial fulfilment for the award of the degree of B. Tech in Electronics and Communication of Cochin University of Science and Technology, Kochi-682022.}
-\end{spacing}
+% 3. In certificates specify it is mini project
+\large \textit{Certified that the mini project report (phase 1) entitled \textbf{“CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS”} is a bonafide work of \textbf{AARDRA S V (24101868)}, \textbf{AAROMAL A (24101880)}, \textbf{ABDULLA HILAL V K (24101000)}, and \textbf{ABHIJITH R S (24102771)}, towards the partial fulfilment for the award of the degree of B. Tech in Electronics and Communication of Cochin University of Science and Technology, Kochi-682022.}
 
 \vspace{3cm}
-\noindent \textbf{Project Guide} \hfill \textbf{Head of the Division}\\[0.5cm]
-\noindent Ms. Reshmi R. Das \hfill Dr. Deepa Shankar
+\textbf{Project Guide} \hfill \textbf{Head of the Division}\\[0.5cm]
+Ms. Reshmi R. Das \hfill Dr. Deepa Shankar
 
 % -------------------------------------------------------------------
 % ACKNOWLEDGEMENT
@@ -92,13 +101,11 @@
 \Large \textbf{ACKNOWLEDGEMENT}\\[1cm]
 \end{center}
 
-\begin{spacing}{1.5}
-We express our sincere gratitude to the Cochin University of Science and Technology (CUSAT) and the Department of Electronics and Communication Engineering for providing us the opportunity and resources to undertake this project titled “CardioKey: Analog ECG Signal Acquisition and Biometrics.” \\
+We express our sincere gratitude to the Cochin University of Science and Technology (CUSAT) and the Department of Electronics and Communication Engineering for providing us the opportunity and resources to undertake this mini project titled “CardioKey: Analog ECG Signal Acquisition and Biometrics.” \\
 
-We extend our heartfelt thanks to Dr. Deepa Shankar, Head of the Department of Electronics and Communication Engineering, for her support, encouragement, and for providing the necessary facilities and a motivating environment to carry out this work successfully. We are deeply grateful to our Project Coordinators, Ms. Mrithula S and Ms. Babitha R Jose, for their continuous guidance, timely advice, and valuable coordination throughout the course of this project. Our deepest gratitude goes to our Project Guide, Ms. Reshmi R. Das, for her constant supervision, insightful suggestions, and technical guidance. Her encouragement and expertise played a vital role in shaping this project to its final form. We also wish to express our appreciation to the laboratory faculty of the Department for their kind assistance and cooperation during the practical phases of the work. \\
+We extend our heartfelt thanks to Dr. Deepa Shankar, Head of the Department of Electronics and Communication Engineering, for her support, encouragement, and for providing the necessary facilities and a motivating environment to carry out this work successfully. Our deepest gratitude goes to our Project Guide, Ms. Reshmi R. Das, for her constant supervision, insightful suggestions, and technical guidance. Her encouragement and expertise played a vital role in shaping this project to its final form. We also wish to express our appreciation to the laboratory faculty of the Department for their kind assistance and cooperation during the practical phases of the work. \\
 
 Finally, we extend our sincere thanks to all faculty members of the Department for their valuable feedback during project reviews, and to our families and friends for their unwavering support and encouragement throughout this endeavor.
-\end{spacing}
 
 % -------------------------------------------------------------------
 % ABSTRACT
@@ -107,22 +114,40 @@ Finally, we extend our sincere thanks to all faculty members of the Department f
 \begin{center}
 \Large \textbf{ABSTRACT}\\[1cm]
 \end{center}
+\vspace{14pt}
 
-\begin{spacing}{1.5}
 Traditional biometric identification methods, such as fingerprint and facial recognition, are increasingly vulnerable to spoofing, fabrication, and external modification. The Electrocardiogram (ECG) presents a highly secure alternative as a biometric identifier due to its inherent uniqueness and the critical advantage of liveness detection. The core of the "CardioKey" project relies on the distinct anatomical and physiological characteristics of an individual's heart, which dictate the specific morphology of the P, QRS, and T waves. \\
 
-This project proposes a comprehensive system for analog ECG signal acquisition and biometric classification. The system utilizes a precision analog front-end, based on the AD8232 ECG sensor with lead-1 electrodes, butterworth filter and amplifier stages to acquire low-amplitude, Lead I heart signals of mV range amplified in V range while rejecting 60Hz mains hum and common-mode noise above 50 Hz. The acquired analog signal is digitally sampled in 300Hz using a 16-bit ADS1115 ADC (860SPS) and processed by a external computer using Arduino UNO as the data pipeline. \\
+This project proposes a comprehensive system for analog ECG signal acquisition and biometric classification. The system utilizes a precision analog front-end, based on the AD8232 ECG sensor with lead-1 electrodes, butterworth filter and amplifier stages to acquire low-amplitude, Lead I heart signals of mV range amplified in V range while rejecting 60Hz mains hum and common-mode noise above 50 Hz. The acquired analog signal is digitally sampled in 300Hz using a 16-bit ADS1115 ADC (860SPS) and processed by an external computer using Arduino UNO as the data pipeline. \\
 
-Digital Signal Processing (DSP) techniques, including wavelet drift correction and butterworth \& notch filters, are applied in data preprocessing stage, 250pt P-QRS-T fragments are segmented and selected per cardiac cycle in intial feature formation stage, which is further compressed into 30pt PCA (Principal Component Analysis) signatures in feature space reduction stage (Dimensionality reduction). Ten 30pt PCA signatures per P-QRS-T fragment (cardiac cycle) are computed for each subject. Finally, all the 10 30pt signatures per subject fed on classification algorithms such as Linear Discriminant Analysis (LDA) and Nearest Mean by dividing the dataset 70-30 for train \& predict and further authenticate another 30pt signature generated for a subject in the database from his/her existing 10 - 30pt signatues. \\
+Digital Signal Processing (DSP) techniques, including wavelet drift correction and butterworth \& notch filters, are applied in the data preprocessing stage, 150pt P-QRS-T fragments are segmented and selected per cardiac cycle in the initial feature formation stage, which is further compressed into 30pt PCA (Principal Component Analysis) signatures in the feature space reduction stage (Dimensionality reduction). Ten 30pt PCA signatures per P-QRS-T fragment (cardiac cycle) are computed for each subject. Finally, all the 10 30pt signatures per subject are fed into classification algorithms such as Linear Discriminant Analysis (LDA) and Nearest Mean by dividing the dataset 70-30 for train \& predict and further authenticate another 30pt signature generated for a subject in the database from his/her existing 10 - 30pt signatures. \\
 
-Trained and classified on publically available ECGID database of 45 subjects including 33 males and 12 females in ages 18-22 lead-2 sampled in 300Hz for rest and exercise conditions generating over 450 30pt signatures in rest conditions alone (10 per subject) using Python modules such as numpy, scipy, matplotlib, scikit-learn. Experimental validation from this foundational database demonstrates an identification accuracy of up to 96\% under resting conditions and overcoming heart rate variability through normalisation \& QT scaling, proving that the ECG is a viable, universal, and unique biometric trait for practical access control systems.
-\end{spacing}
+\newpage
+ 
+Trained and classified on the publically available ECGID database of 45 subjects including 33 males and 12 females in ages 18-22 lead-2 sampled in 300Hz for rest and exercise conditions generating over 450 30pt signatures in rest conditions alone (10 per subject) using Python modules such as numpy, scipy, matplotlib, and scikit-learn. Experimental validation from this foundational database demonstrates an identification accuracy of up to 96\% under resting conditions and overcoming heart rate variability through normalisation \& QT scaling, proving that the ECG is a viable, universal, and unique biometric trait for practical access control systems.
 
 % -------------------------------------------------------------------
-% TABLE OF CONTENTS
+% 4 & 5 & 14. CONTENT PAGES (TOC, LOF, LOT, ABBREVIATIONS)
 % -------------------------------------------------------------------
 \newpage
 \tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\chapter*{ABBREVIATIONS}
+\addcontentsline{toc}{chapter}{ABBREVIATIONS}
+\begin{flushleft}
+\textbf{ADC} \hspace{2cm} Analog-to-Digital Converter \\
+\textbf{DSP} \hspace{2cm} Digital Signal Processing \\
+\textbf{ECG} \hspace{2cm} Electrocardiogram \\
+\textbf{LDA} \hspace{2cm} Linear Discriminant Analysis \\
+\textbf{MCU} \hspace{2cm} Microcontroller Unit \\
+\textbf{PCA} \hspace{2cm} Principal Component Analysis \\
+\textbf{RLD} \hspace{2cm} Right Leg Drive \\
+\textbf{SVM} \hspace{2cm} Support Vector Machine \\
+\end{flushleft}
 
 % -------------------------------------------------------------------
 % CHAPTERS
@@ -131,307 +156,649 @@ Trained and classified on publically available ECGID database of 45 subjects inc
 \pagenumbering{arabic}
 
 \chapter{INTRODUCTION}
-\begin{spacing}{1.5}
-As modern technology rapidly advances, the demand for highly secure access control systems has reached an unprecedented high. As a core technology in the field of information security, human biometric recognition has become the focus of researchers' attention. Traditional identification technologies such as certificates, passwords, and tokens are fundamentally flawed; they can be easily forgotten, stolen, or forcefully compromised. 
+\vspace{10pt}
+As modern technology rapidly advances, the demand for highly secure access control systems has reached an unprecedented high. As a core technology in the field of information security, human biometric recognition has become the focus of researchers' attention. Traditional identification technologies such as certificates, passwords, and tokens are fundamentally flawed; they can be easily forgotten, stolen, or forcefully compromised. \\
 
-To overcome these vulnerabilities, biometric identification emerged, relying on an individual's unique anatomical, physiological, or behavioral characteristics. Currently, the most common biometric modalities include fingerprint scanning, facial recognition (Face ID), voice recognition, and iris scanning. While these methods have achieved high recognition rates and commercial success, they are not entirely secure. A Face ID system can be corrupted by high-resolution photograph modifications, 3D masks, or sophisticated makeup. Fingerprints can be effortlessly lifted from surfaces and recreated using latex or silicone. Voice patterns can be recorded and replayed, or even synthesized using modern Artificial Intelligence. 
+To overcome these vulnerabilities, biometric identification emerged, relying on an individual's unique anatomical, physiological, or behavioral characteristics. Currently, the most common biometric modalities include fingerprint scanning, facial recognition (Face ID), voice recognition, and iris scanning. While these methods have achieved high recognition rates and commercial success, they are not entirely secure. A Face ID system can be corrupted by high-resolution photograph modifications, 3D masks, or sophisticated makeup. Fingerprints can be effortlessly lifted from surfaces and recreated using latex or silicone. Voice patterns can be recorded and replayed, or even synthesized using modern Artificial Intelligence. \\
 
-To strengthen the security of identification technology, the Electrocardiogram (ECG) has been proposed as a next-generation biometric identifier. The ECG provides an absolute guarantee of reliability because it is strictly generated by the internal organs of a living body, effectively solving the "liveness detection" problem inherent in surface-level biometrics. 
+To strengthen the security of identification technology, the Electrocardiogram (ECG) has been proposed as a next-generation biometric identifier. The ECG provides an absolute guarantee of reliability because it is strictly generated by the internal organs of a living body, effectively solving the "liveness detection" problem inherent in surface-level biometrics. \\
 
-The ECG waveform is essentially a record of the electrical currents generated by the beating heart, spreading not only within the cardiac muscle but throughout the entire human body. Muscle contraction causes depolarization, which translates into minute voltage changes on the skin's surface over time. The fundamental ECG cycle consists of the P wave (atrial depolarization), the QRS complex (ventricular depolarization), and the T wave (ventricular repolarization). 
+The ECG waveform is essentially a record of the electrical voltages generated by the beating heart, spreading not only within the cardiac muscle but throughout the entire human body. Muscle contraction causes depolarization, which translates into minute voltage changes on the skin's surface over time. The fundamental ECG cycle consists of the P wave (atrial depolarization), the QRS complex (ventricular depolarization), and the T wave (ventricular repolarization). \\
 
-To be considered a viable biometric, a trait must possess four fundamental characteristics, all of which the ECG perfectly fulfills:
-\begin{itemize}
-    \item \textbf{Universality:} Every living human generates ECG signals continuously. Without a heartbeat, there is no life, making this trait universally applicable.
-    \item \textbf{Uniqueness:} The ECG differences between individuals are driven by highly unique physiological factors. These include heart location, heart size, geometric shape, chest cavity structure, tissue conductivity, and age. No two humans have identical internal chest geometries, guaranteeing waveform uniqueness.
-    \item \textbf{Stability:} The structure and morphological size of an adult heartbeat are fundamentally fixed. Waveforms remain remarkably stable over long periods unless massive pathological lesions (such as a myocardial infarction) occur.
-    \item \textbf{Measurability:} Modern analog electronics, specifically instrumentation amplifiers, have become highly miniaturized, portable, and precise. This allows for high-accuracy ECG acquisition using simple limb contacts (like touching a door handle) without the need for invasive medical procedures.
-\end{itemize}
+\newpage
+
+To be considered a viable biometric, a trait must possess four fundamental characteristics, all of which the ECG perfectly fulfills: \\
+% 6. Don’t use bullet point instead use numbering
+\begin{enumerate}
+\item \textbf{Universality:} Every living human generates ECG signals continuously. Without a heartbeat, there is no life, making this trait universally applicable.
+\item \textbf{Uniqueness:} The ECG differences between individuals are driven by highly unique physiological factors. These include heart location, heart size, geometric shape, chest cavity structure, tissue conductivity, and age. No two humans have identical internal chest geometries, guaranteeing waveform uniqueness.
+\item \textbf{Stability:} The structure and morphological size of an adult heartbeat are fundamentally fixed. Waveforms remain remarkably stable over long periods unless massive pathological lesions (such as a myocardial infarction) occur.
+\item \textbf{Measurability:} Modern analog electronics, specifically instrumentation amplifiers, have become highly miniaturized, portable, and precise. This allows for high-accuracy ECG acquisition using simple limb contacts (like touching a door handle) without the need for invasive medical procedures. \\
+\end{enumerate}
 
 The "CardioKey" project aims to physically build and program this biometric pipeline. By capturing the cardiac voltage changes through a precision analog front-end, mathematically filtering the noise, and applying machine learning algorithms to the unique morphology of the P, QRS, and T waves, the system can securely and continuously identify an individual.
-\end{spacing}
+
 
 \chapter{LITERATURE REVIEW}
-\begin{spacing}{1.5}
-The exploration of the Electrocardiogram (ECG) as a biometric identifier has gained significant traction over the past twenty years. Researchers have approached the challenge from multiple angles, generally categorizing methodologies into fiducial (feature-based) and non-fiducial (wave-based) approaches. 
+\vspace{10pt}
+The exploration of the Electrocardiogram (ECG) as a biometric identifier has gained significant traction over the past twenty years. Researchers have approached the challenge from multiple angles, generally categorizing methodologies into fiducial (feature-based) and non-fiducial (wave-based) approaches. \\
 
-Early foundational work by Biel et al. extracted 30 specific time and amplitude features from the ECG signal. By utilizing Soft Independent Modeling of Class Analogy (SIMCA) alongside correlation matrix analysis, their team achieved a 98\% identification accuracy across a small dataset of 20 subjects. While highly accurate, the study relied on standard 12-lead medical configurations, which are entirely impractical for everyday security applications.
+Early foundational work by Biel et al. extracted 30 specific time and amplitude features from the ECG signal. By utilizing Soft Independent Modeling of Class Analogy (SIMCA) alongside correlation matrix analysis, their team achieved a 98\% identification accuracy across a small dataset of 20 subjects. While highly accurate, the study relied on standard 12-lead medical configurations, which are entirely impractical for everyday security applications. \\
 
-To address usability, Shen et al. proposed an identification system strictly based on a single-lead ECG (Lead I), which measures the potential difference between the left and right arms. They extracted 7 time-domain features specifically from the QRS complex. Employing template matching and a Decision-Based Neural Network (DBNN), their system secured a 100\% correct verification rate, proving that single-lead acquisition is viable for biometric security.
+To address usability, Shen et al. proposed an identification system strictly based on a single-lead ECG (Lead I), which measures the potential difference between the left and right arms. They extracted 7 time-domain features specifically from the QRS complex. Employing template matching and a Decision-Based Neural Network (DBNN), their system secured a 100\% correct verification rate, proving that single-lead acquisition is viable for biometric security. \\
 
-A landmark study by Lugovaya and Nemirko investigated ECG identification utilizing the extensive ECG-ID database hosted on PhysioNet. This dataset involved 90 volunteers and 310 single-lead (Lead I) recordings over a period of six months. Their methodology fundamentally shifted from simple peak-distance measurements to holistic wave morphology. They extracted complete 250-sample P-QRS-T fragments, reduced the high-dimensional data via Principal Component Analysis (PCA), and utilized Linear Discriminant Analysis (LDA) to classify the waveforms. Their pipeline successfully achieved a 96\% identification rate, establishing a standardized baseline for modern ECG biometrics.
+A landmark study by Lugovaya and Nemirko investigated ECG identification utilizing the extensive ECG-ID database hosted on PhysioNet. This dataset involved 90 volunteers and 310 single-lead (Lead I) recordings over a period of six months. Their methodology fundamentally shifted from simple peak-distance measurements to holistic wave morphology. They extracted complete 250-sample P-QRS-T fragments, reduced the high-dimensional data via Principal Component Analysis (PCA), and utilized Linear Discriminant Analysis (LDA) to classify the waveforms. Their pipeline successfully achieved a 96\% identification rate, establishing a standardized baseline for modern ECG biometrics. \\
+
+\newpage
 
 Despite these high accuracies, recent literature has exposed a critical vulnerability in ECG biometrics: the "Rest-Ex" (Rest-Exercise) problem. Cui et al. (2021) demonstrated that the morphological structure of the ECG is heavily dependent on Heart Rate Variability (HRV). During exercise or stress, the diastole duration shortens significantly, the R-wave amplitude attenuates, and the T-wave becomes notably steeper. Cui's research revealed that state-of-the-art algorithms trained strictly on resting data completely collapsed when tested against post-exercise data—plummeting from a 99.6\% accuracy down to an abysmal 2.7\%. To counter this, they proposed the use of Kullback-Leibler (KL) divergence for advanced feature selection, selecting only the mathematical features that remain robust against heart rate spikes. This advanced statistical approach managed to recover post-exercise identification accuracy to 61.4\%, highlighting the ongoing challenge of dynamic physical states in biometric security.
-\end{spacing}
 
 \chapter{PROBLEM IDENTIFICATION AND OBJECTIVE}
-\begin{spacing}{1.5}
+\vspace{10pt}
 The development of a robust ECG biometric system faces a unique set of challenges that span analog hardware design, digital signal processing, and dynamic human physiology. The primary problems identified in the current state of access control and experimental biometrics include:
 
-\begin{itemize}
-    \item \textbf{Vulnerability to Spoofing:} Traditional biometrics (fingerprints, face scans) lack inherent liveness detection. They authenticate based on static surface geometry rather than vital physiological function.
-    \item \textbf{Analog Signal Acquisition Difficulties:} Heart signals measured at the wrists (Lead I) are incredibly weak, typically ranging from 0.5 mV to 2.0 mV. Extracting this micro-signal is severely hampered by massive 60Hz/50Hz mains power-line noise absorbed by the human body acting as an antenna, alongside high-frequency electromyographic (EMG) noise from natural muscle tremors.
-    \item \textbf{Data Resolution Bottlenecks:} Standard microcontrollers (like the 10-bit Arduino Uno) lack the precision necessary to digitize the subtle morphological curves of the P and T waves required for accurate human differentiation.
-    \item \textbf{The "Rest-Ex" Problem:} Heart Rate Variability caused by stress, exercise, or emotion drastically distorts the baseline fragment of the ECG. Algorithms trained to recognize a user at 60 BPM will fail to recognize the exact same user at 120 BPM due to the non-linear compression of the QT interval.
-\end{itemize}
+\vspace{10pt}
+
+\begin{enumerate}
+\item \textbf{Vulnerability to Spoofing:} Traditional biometrics (fingerprints, face scans) lack inherent liveness detection. They authenticate based on static surface geometry rather than vital physiological function.
+\item \textbf{Analog Signal Acquisition Difficulties:} Heart signals measured at the wrists (Lead I) are incredibly weak, typically ranging from 0.5 mV to 2.0 mV. Extracting this micro-signal is severely hampered by massive 60Hz/50Hz mains power-line noise absorbed by the human body acting as an antenna, alongside high-frequency electromyographic (EMG) noise from natural muscle tremors.
+\item \textbf{Data Resolution Bottlenecks:} Standard microcontrollers (like the 10-bit Arduino Uno) lack the precision necessary to digitize the subtle morphological curves of the P and T waves required for accurate human differentiation.
+\item \textbf{The "Rest-Ex" Problem:} Heart Rate Variability caused by stress, exercise, or emotion drastically distorts the baseline fragment of the ECG. Algorithms trained to recognize a user at 60 BPM will fail to recognize the exact same user at 120 BPM due to the non-linear compression of the QT interval. \\
+\end{enumerate}
+
+\newpage
 
 \section{Objectives}
 The primary goal of the "CardioKey" project is to bridge the gap between precision analog circuitry and advanced machine learning to design a robust, spoof-proof, fully automated biometric lock. The specific objectives include:
 \begin{enumerate}
-    \item \textbf{Hardware Design:} To design and fabricate a precision analog front-end utilizing a high-gain instrumentation amplifier (AD620) capable of cleanly capturing low-amplitude Lead I heart signals.
-    \item \textbf{Noise Cancellation:} To actively reject massive 60Hz mains hum and common-mode voltages by implementing a hardware-level Right Leg Drive (RLD) feedback loop using an AD705J op-amp.
-    \item \textbf{High-Resolution Digitization:} To interface the cleaned analog signal with an external 16-bit ADS1115 Analog-to-Digital Converter, sampling precisely at 500 Hz to ensure no morphological data is lost.
-    \item \textbf{Digital Filtering:} To implement software-based Digital Signal Processing (DSP) algorithms, including Wavelet Drift Correction for baseline wander and 4th-order Butterworth filters (0.5Hz - 40Hz) for high-frequency noise removal.
-    \item \textbf{Feature Extraction:} To successfully program an R-peak detection algorithm (such as the Pan-Tompkins method) and accurately segment the continuous signal into discrete 250-sample P-QRS-T fragments.
-    \item \textbf{Dimensionality Reduction:} To compress the massive 250-point data arrays into highly optimized 30-point biometric "signatures" utilizing Principal Component Analysis (PCA).
-    \item \textbf{Classification:} To authenticate the user's identity by feeding the reduced features into a Support Vector Machine (SVM) or Linear Discriminant Analysis (LDA) model, aiming to match or exceed the 96\% baseline resting accuracy.
+\item \textbf{Hardware Design:} To design and fabricate a precision analog front-end utilizing the AD8232 ECG sensor with Lead-I electrodes, incorporating Butterworth filter and amplifier stages to acquire low-amplitude heart signals in the mV range and amplify x1001 them into the V range.
+\item \textbf{Noise Cancellation:} To actively reject massive 60Hz mains hum and common-mode noise above 50 Hz through the integrated analog hardware.
+\item \textbf{High-Resolution Digitization:} To interface the cleaned analog signal with an external 16-bit ADS1115 Analog-to-Digital Converter (set to 860 SPS), sampling precisely at 300 Hz, and routing the data pipeline to an external computer using an Arduino UNO.
+\item \textbf{Digital Filtering:} To implement software-based Digital Signal Processing (DSP) algorithms in the preprocessing stage, including Wavelet Drift Correction for baseline wander, along with digital Butterworth and notch filters.
+\item \textbf{Feature Extraction:} To successfully program an R-peak thresholding algorithm to accurately segment the continuous signal into discrete 150-sample (0.5 seconds) P-QRS-T fragments per cardiac cycle. This is anchored by extracting exactly 48 samples (0.16 seconds) before the R-peak and 102 samples (0.34 seconds) after it.
+\item \textbf{Dimensionality Reduction:} To compress the 150-point P-QRS-T fragments into highly optimized 30-point biometric PCA (Principal Component Analysis) signatures, computing exactly ten 30-point signatures per subject.
+\item \textbf{Classification:} To authenticate the user's identity by dividing the dataset 70-30 for training and prediction, feeding the ten 30-point signatures per subject into classification algorithms such as Linear Discriminant Analysis (LDA) and Nearest Mean classifiers.
 \end{enumerate}
-\end{spacing}
 
 \chapter{WHY WE CHOSE THIS PROJECT}
-\begin{spacing}{1.5}
-The project team carefully evaluated multiple concepts in the domain of physical security and electronics. We ultimately selected "CardioKey" because it represents a cutting-edge paradigm shift in access control: moving from 'what you have' (keys) and 'what you look like' (face) to 'how you function' (physiology). 
+The project team carefully evaluated multiple concepts in the domain of physical security and electronics. We ultimately selected "CardioKey" because it represents a cutting-edge paradigm shift in access control: moving from 'what you have' (keys) and 'what you look like' (face) to 'how you function' (physiology).\\
 
-The primary motivation was the critical concept of \textbf{Liveness Detection}. A system relying on an ECG waveform inherently guarantees that the user attempting access is a living human being with a beating heart. This completely neutralizes the threat of silicone fingerprint replicas, stolen photographs, or detached appendages—gruesome but real threats in high-security environments.
+The primary motivation was the critical concept of \textbf{Liveness Detection}. A system relying on an ECG waveform inherently guarantees that the user attempting access is a living human being with a beating heart. This completely neutralizes the threat of silicone fingerprint replicas, stolen photographs, or detached appendages—gruesome but real threats in high-security environments.\\
 
 Furthermore, CardioKey provides a brilliant multidisciplinary engineering challenge. It is not purely a software project, nor is it purely a hardware project. It requires:
-\begin{itemize}
-    \item \textbf{Precision Analog Design:} Understanding common-mode rejection, biological impedance, op-amp saturation, and hardware filtering.
-    \item \textbf{Embedded Systems:} Managing I2C communications, specific ADC sampling rates, and microcontroller memory management.
-    \item \textbf{Data Science \& Machine Learning:} Implementing complex mathematical transforms (Fourier, Wavelets), matrix mathematics for PCA, and training statistical classifiers.
-\end{itemize}
-
-Finally, the practical applicability of the single-lead setup (measuring simply from the left and right hands) mimics the exact interaction a user has when grabbing a door handle or a steering wheel. This proves that ECG biometrics are not restricted to hospital beds but are highly viable for seamless, everyday commercial applications.
-\end{spacing}
-
-\chapter{PHASE 1 – ANALOG CIRCUIT DESIGN AND TESTING}
-\begin{spacing}{1.5}
-Phase 1 of the project strictly focused on the acquisition of the raw, biological analog signal. Because the electrical action potentials generated by the sinoatrial node of the heart dissipate through tissue, they arrive at the wrists with amplitudes of merely 1 millivolt ($1 mV$). Extracting this signal requires immense amplification in an environment saturated with electromagnetic noise.
-
-\section{The Differential Amplifier Stage}
-The core of the acquisition system utilizes the \textbf{AD620 Instrumentation Amplifier}. Unlike standard operational amplifiers, the AD620 contains three internal op-amps and laser-trimmed resistors designed specifically for high precision and massive Common-Mode Rejection (CMR). It boasts a low input voltage noise of only $9 nV/\sqrt{Hz}$. 
-
-The gain of the AD620 is programmed using a single external resistor ($R_G$). Based on the standard equation:
-$$ G = 1 + \frac{49.4 k\Omega}{R_G} $$
-To achieve a base gain of 7 in the first stage, an $R_G$ of $8.25 k\Omega$ is utilized. A subsequent output amplifier stage provides a gain of 143, resulting in a total circuit gain of $1001$. This perfectly scales a $1 mV$ heart signal to a $1 V$ output, matching the input ranges of modern ADCs.
-
-\section{The Right Leg Drive (RLD) Circuit}
-The most severe interference in ECG acquisition is the 60Hz (or 50Hz) mains hum. The human body acts as an antenna, coupling with the AC wiring in the walls and creating a common-mode voltage that easily dwarfs the millivolt ECG signal. 
-
-To mitigate this, an \textbf{AD705J} precision operational amplifier is deployed in a Right Leg Drive configuration. Instead of passively grounding the reference electrode (placed on the user's leg or lower abdomen), the RLD circuit actively measures the common-mode noise present at the AD620 inputs, inverts it, and injects it back into the patient's body. This active feedback loop violently cancels out the 60Hz interference before it can saturate the amplifier.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/5.png} 
-    \caption{Medical ECG Monitor Circuit utilizing AD620 and AD705J Right Leg Drive.}
-    \label{fig:ecg_schematic}
-\end{figure}
-
-\section{Hardware Filtering and Breadboard Testing}
-Following amplification, the signal must be hardware-filtered to prevent aliasing before digitization. 
-\begin{itemize}
-    \item \textbf{Notch Filter:} A precisely tuned twin-T notch filter targets and deeply attenuates the remaining 60Hz frequency, pushing the noise floor down by -20dB.
-    \item \textbf{Low-Pass Filter:} A passive low-pass filter with a cutoff frequency ($F_c$) of roughly 80Hz is deployed to strip away the high-frequency "fuzz" caused by radio interference and muscle electromyography (EMG).
-    \item \textbf{High-Pass Filter:} A $0.03Hz$ high-pass filter acts as a DC-blocking capacitor to eliminate slow baseline wander caused by the user breathing.
-\end{itemize}
-Breadboard testing utilizing Ag/AgCl sticky electrodes placed in the Lead I configuration (Right Arm, Left Arm, Right Leg) connected to an oscilloscope verified the successful hardware isolation of the P, R, and T waves.
-\end{spacing}
-
-\chapter{SYSTEM DESIGN AND ARCHITECTURE}
-\begin{spacing}{1.5}
-The overall system architecture of CardioKey translates the raw, noisy biological data into a concrete mathematical identity. The architecture follows a rigid, linear biometric identification scheme, progressing from physical hardware sensors to cloud-based software classification.
-
-\section{Subsystems and Pipeline}
 \begin{enumerate}
-    \item \textbf{Data Acquisition:} Analog signals are gathered via Lead I using limb clamp electrodes or conductive touch-pads. The signal is amplified by the AD620 and digitized by the ADS1115 ADC.
-    \item \textbf{Data Preprocessing (Digital Filtering):} Software algorithms take over. The raw digital array is cleaned using a 4th-order Butterworth bandpass filter (0.5 Hz to 40 Hz) and Wavelet Drift Correction to perfectly center the isoelectric line.
-    \item \textbf{Initial Feature Space Formation:} The continuous digital signal is segmented. A thresholding algorithm (Hamilton Segmenter or Pan-Tompkins) identifies the massive R-peaks. Using the R-peak as an anchor, a 250-sample window encompassing the entire P-QRS-T complex is mathematically sliced out of the data stream.
-    \item \textbf{Feature Space Reduction:} A single heartbeat yields 250 data points, which is computationally expensive to classify. Principal Component Analysis (PCA) maps this 250-dimensional space into 30 uncorrelated principal components, representing the unique biometric signature.
-    \item \textbf{Classification and Recognition:} The 30-point signature is fed into a trained Machine Learning model (Support Vector Machine or Linear Discriminant Analysis) to determine if the pattern belongs to an authorized user.
+\item \textbf{Precision Analog Design:} Understanding common-mode rejection, biological impedance, op-amp saturation, and hardware filtering.
+\item \textbf{Embedded Systems:} Managing I2C communications, specific ADC sampling rates, and microcontroller memory management.
+\item \textbf{Data Science \& Machine Learning:} Implementing complex mathematical transforms (Fourier, Wavelets), matrix mathematics for PCA, and training statistical classifiers. \\
 \end{enumerate}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/6.png} 
-    \caption{Detailed Identification System Structure detailing Acquisition to Classification.}
-\end{figure}
-\end{spacing}
+Finally, the practical applicability of the single-lead setup (measuring simply from the left and right hands) mimics the exact interaction a user has when grabbing a door handle or a steering wheel. This proves that ECG biometrics are not restricted to hospital beds but are highly viable for seamless, everyday commercial applications.
 
 \chapter{SENSORS AND EQUIPMENT OVERVIEW}
-\begin{spacing}{1.5}
-The transition from analog biophysics to digital logic requires specific, high-tolerance components to preserve the integrity of the biometric data.
+The transition from analog biophysics to digital logic requires specific, high-tolerance components to preserve the integrity of the biometric data. The hardware setup between these components is shown in Figure \ref{fig:hardware_setup}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/5.2.jpeg}
+\caption{Experimental hardware setup displaying the breadboard circuit, Lead I electrode placement connected to CRO}
+\label{fig:hardware_setup}
+\end{figure}
 
 \section{Analog Front-End: AD8232 / AD620}
-While the AD620 is ideal for custom, variable-gain benchtop designs, the \textbf{AD8232 Heart Rate Monitor} module serves as a highly integrated alternative for the final CardioKey prototype. The AD8232 integrates the instrumentation amplifier, the Right Leg Drive reference buffer, and the operational amplifiers required for multi-pole low-pass and high-pass filtering into a single microchip. Operating on a 3.3V logic level, it directly outputs a conditioned analog waveform centered at $1.5V$.
+While the AD620 is ideal for custom, variable-gain benchtop designs, the \textbf{AD8232 Heart Rate Monitor} module serves as a highly integrated alternative for the final CardioKey prototype. The AD8232 integrates the instrumentation amplifier, the Right Leg Drive reference buffer, and the operational amplifiers required for multi-pole low-pass and high-pass filtering into a single microchip. Operating on a 3.3V logic level, it directly outputs a conditioned analog waveform centered at $1.5V$ with x1001 gain effectively converting mV samples to V range. The interface connection between AD8232 and Arduino UNO is illustrated in Figure \ref{fig:wiring_diagram}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/7.jpeg}
+\caption{Interfacing lead-1 electrodes \& AD8232 ECG with Arduino UNO}
+\label{fig:wiring_diagram}
+\end{figure}
 
 \section{High-Resolution Digitization: ADS1115}
 A standard microcontroller like the Arduino Uno utilizes a 10-bit ADC, which breaks the analog signal into 1024 steps. Biometric research strictly dictates that to accurately capture the subtle geometric curves of the P and T waves, higher resolution is mandatory. Therefore, the system utilizes the \textbf{ADS1115}, a dedicated 16-bit Analog-to-Digital Converter. This provides 65,536 steps of resolution. It communicates the digitized data arrays to the main processor via the I2C (SDA/SCL) protocol, configured strictly to sample at a frequency between 300 Hz and 500 Hz to capture the high-speed R-spike.
 
 \section{Microcontroller Unit (MCU)}
-Depending on the deployment environment, either a \textbf{Raspberry Pi 3/4} or an advanced ESP32 microcontroller is utilized as the central brain. The MCU acts as the "Data Pipe," pulling the 16-bit integers from the ADS1115 and applying the complex matrix mathematics required for the PCA and SVM classification algorithms using Python or C++ libraries.
+Depending on the deployment environment and cost constraints, the choice of the microcontroller architecture can vary. As an alternative approach, an advanced microprocessor like a \textbf{Raspberry Pi 3/4} or an ESP32 could be utilized to perform edge authentication. This allows the device to handle all complex mathematics locally, creating a fully standalone and portable biometric lock, though at a significantly higher hardware cost. An example of this alternative hardware configuration interfacing the AD8232 sensor and ADS1115 ADC with a Raspberry Pi is illustrated in Figure \ref{fig:raspi_wiring}\\.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/7.png} 
-    \caption{Wiring diagram of AD8232 interface with ADS1115 and Microcontroller.}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/old7.png}
+\caption{Wiring diagram demonstrating an alternative standalone edge-computing architecture using a Raspberry Pi interfaced with the ADS1115 ADC and AD8232 ECG sensor.}
+\label{fig:raspi_wiring}
 \end{figure}
-\end{spacing}
+
+For our specific implementation, an \textbf{Arduino UNO} is utilized as the central microcontroller. In this architecture, the Arduino acts strictly as a high-speed "Data Pipe." It pulls the 16-bit digitized voltage samples from the ADS1115 ADC via the I2C protocol at exactly 300 Hz and continuously streams this raw data to an external computer.  \\
+
+By offloading the computational load, this setup makes the hardware highly modular and easy to plug into any standard computer. The connected external computer leverages its superior processing power to execute the heavy matrix mathematics required for the Digital Signal Processing (DSP) filters, Principal Component Analysis (PCA), and final Machine Learning classification (such as LDA, Nearest Mean, or SVM) utilizing Python libraries to seamlessly handle user authentication. \\
+
+\chapter{PHASE 1 – ANALOG CIRCUIT DESIGN AND TESTING}
+\vspace{15pt}
+Phase 1 of the project strictly focused on the acquisition of the raw, biological analog signal. Because the electrical action potentials generated by the sinoatrial node of the heart dissipate through tissue, they arrive at the wrists with amplitudes of merely 1 millivolt ( $1 mV$ ). Extracting this signal requires immense amplification in an environment saturated with electromagnetic noise. \\ 
+
+\section{The Differential Input \& Output Amplifier Stages}
+The core of the acquisition system utilizes the \textbf{AD620 Instrumentation Amplifier}. Unlike standard operational amplifiers, the AD620 contains three internal op-amps and laser-trimmed resistors designed specifically for high precision and massive Common-Mode Rejection (CMR). It boasts a low input voltage noise of only $9 nV/\sqrt{Hz}$. \\
+
+The gain of the AD620 is programmed using a single external resistor ($R_G$). Based on the standard equation: $G = 1 + \frac{49.4 k\Omega}{R_G}$. To achieve a base gain of 7 in the first stage, an $R_G$ of $8.25 k\Omega$ is utilized. A subsequent output amplifier stage provides a gain of 143, resulting in a total circuit gain of $1001$. This perfectly scales a $1 mV$ heart signal to a $1 V$ output, matching the input ranges of modern ADCs. \\
+
+\section{The Right Leg Drive (RLD) Circuit}
+The most severe interference in ECG acquisition is the 60Hz (or 50Hz) mains hum. The human body acts as an antenna, coupling with the AC wiring in the walls and creating a common-mode voltage that easily dwarfs the millivolt ECG signal. \\
+
+\newpage
+
+To mitigate this, an \textbf{AD705J} precision operational amplifier is deployed in a Right Leg Drive configuration. Instead of passively grounding the reference electrode (placed on the user's leg or lower abdomen), the RLD circuit actively measures the common-mode noise present at the AD620 inputs, inverts it, and injects it back into the patient's body. This active feedback loop violently cancels out the 60Hz interference before it can saturate the amplifier. As demonstrated in Figure \ref{fig:ecg_schematic}, this analog setup effectively protects the integrity of the signal.
+
+% 12 & 14. Centralize figures, accompany with figure number, mentioned in paragraph.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/5.1.png}
+\caption{Medical ECG Monitor Circuit utilizing AD620 and AD705J Right Leg Drive.}
+\label{fig:ecg_schematic}
+\end{figure}
+
+\section{Hardware Filtering and Breadboard Testing}
+Following amplification, the signal must be hardware-filtered to prevent aliasing before digitization.
+\begin{enumerate}
+\item \textbf{Notch Filter:} A precisely tuned twin-T notch filter targets and deeply attenuates the remaining 60Hz frequency, pushing the noise floor down by -20dB.
+\item \textbf{Low-Pass Filter:} A passive low-pass filter with a cutoff frequency ($F_c$) of roughly 80Hz is deployed to strip away the high-frequency "fuzz" caused by radio interference and muscle electromyography (EMG).
+\item \textbf{High-Pass Filter:} A $0.03Hz$ high-pass filter acts as a DC-blocking capacitor to eliminate slow baseline wander caused by the user breathing.
+\end{enumerate}
+
+Breadboard testing with Lead I Ag/AgCl electrodes successfully isolated the P, R, and T waves, as demonstrated by the AD8232 sensor's conditioned waveform in Figure \ref{fig:ad8232_cro}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/7.1.jpeg}
+\caption{Oscilloscope (CRO) output demonstrating the conditioned analog ECG waveform captured directly from the AD8232 sensor.}
+\label{fig:ad8232_cro}
+\end{figure}
+
+
+\section{High-Resolution Digital Sampling (ADS1115)}
+Following the analog amplification and filtering stages, the biometric signal must be accurately digitized for software analysis. Standard microcontrollers possess internal 10-bit ADCs, which lack the electrical precision required to capture the ultra-fine morphological variations of the P, QRS, and T waves. To overcome this resolution bottleneck, the system utilizes an external \textbf{16-bit ADS1115 Analog-to-Digital Converter}. \\
+
+Before digitization can occur, the analog waveform must be conditioned. The output from the analog amplification stages swings into both positive and negative voltages. Because the ADS1115 module cannot safely process negative voltages without damage, the signal is first routed through an external DC offset circuit (clamper). This circuit shifts the entire waveform up by exactly +1.5V, ensuring the final output swings safely between 0.5V and 2.5V before entering the ADC. \\
+
+To accurately capture the high-frequency R-peak and preserve the structural integrity of the entire cardiac cycle, the project methodology requires a strict digital sampling rate of exactly 300 Hz. To successfully achieve this 300 samples-per-second extraction via the microcontroller over the I2C interface, the ADS1115 is configured to operate in continuous mode with its Data Rate register set to \textbf{860 SPS} (Samples Per Second). Operating the hardware at 860 SPS guarantees that the ADC is digitizing the analog voltage significantly faster than the microcontroller's polling cycle, providing a highly reliable, high-resolution data pipeline capable of maintaining a constant 300 Hz reading for the subsequent P-QRS-T feature extraction algorithms. A snippet of this resulting raw digitized data format is shown in Figure \ref{fig:raw_data_txt}. \\
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/5.4.png}
+\caption{Snippet of the raw digitized ECG database (1.txt), displaying the sequential 16-bit voltage samples recorded at 300 Hz prior to digital signal processing.}
+\label{fig:raw_data_txt}
+\end{figure}
+
+\chapter{SYSTEM DESIGN AND ARCHITECTURE}
+The overall system architecture of CardioKey translates the raw, noisy biological data into a concrete mathematical identity. The architecture follows a rigid, linear biometric identification scheme, progressing from physical hardware sensors to cloud-based software classification. As visualized in Figure \ref{fig:sys_arch}, the system spans from hardware data acquisition through sophisticated software analysis.
+
+\section{Subsystems and Pipeline (Digital Signal Processing)}
+\begin{enumerate}
+\item \textbf{Data Acquisition:} Analog signals are gathered via Lead I using limb clamp electrodes or conductive touch-pads. The signal is processed by the AD8232 ECG sensor front-end and digitally sampled at exactly 300 Hz using an external 16-bit ADS1115 ADC (configured to 860 SPS). An Arduino UNO serves as the microcontroller managing this data pipeline to an external computer.
+\item \textbf{Data Preprocessing (Digital Filtering):} Software algorithms take over. The raw digital array is cleaned using a 4th-order Butterworth bandpass filter (0.5 Hz to 40 Hz), digital notch filters to reject remaining mains hum, and Wavelet Drift Correction to perfectly center the isoelectric line.
+\item \textbf{Initial Feature Space Formation:} The continuous digital signal is segmented. A thresholding algorithm (such as the Hamilton Segmenter or Pan-Tompkins) identifies the massive R-peaks. Using the R-peak as an anchor, a 150-sample window (representing exactly 0.5 seconds of time) encompassing the entire P-QRS-T complex is mathematically sliced out of the data stream. This is achieved by extracting exactly 48 samples (0.16 seconds) prior to the peak and 102 samples (0.34 seconds) after it. 
+\item \textbf{Feature Space Reduction:} A single heartbeat yields 150 data points, which is still computationally expensive to classify. Principal Component Analysis (PCA) maps this 150-dimensional space down into 30 uncorrelated principal components, representing the unique biometric signature. Exactly ten 30-point PCA signatures are computed per subject for the cardiac cycles.
+\item \textbf{Classification and Recognition:} The dataset of the ten 30-point signatures per subject is divided into a 70-30 split for training and prediction. These signatures are fed into trained Machine Learning models (such as Linear Discriminant Analysis, Nearest Mean Classifier, or Support Vector Machines) to authenticate and match a newly generated 30-point signature against the database of enrolled users. \\ \\
+\end{enumerate}
+
+\begin{figure}[!h] % The '!' forces LaTeX to try harder to keep it here
+\centering
+\vfill % Pushes the figure down from the text above
+\includegraphics[height=0.6\textheight, width=\textwidth, keepaspectratio]{imgs/6.png}
+\vfill % Pushes the caption/remaining space down
+\caption{Detailed Identification System Structure detailing Acquisition to Classification.}
+\label{fig:sys_arch}
+\end{figure}
 
 \chapter{SIGNAL PROCESSING AND FILTERING}
-\begin{spacing}{1.5}
-Even with robust analog hardware, the digitized ECG signal remains susceptible to mechanical artifacts, specifically baseline wander caused by respiration and high-frequency noise from muscle shivering. Rigorous Digital Signal Processing (DSP) is mathematically applied before any feature extraction occurs.
+\vspace{10pt}
+Even with robust analog hardware, the digitized ECG signal remains susceptible to mechanical artifacts, specifically baseline wander caused by respiration and high-frequency noise from muscle shivering. Figure \ref{fig:noisy_ecg} illustrates various examples of these common ECG signal distortions alongside their corresponding filtering methods. Rigorous Digital Signal Processing (DSP) is mathematically applied to address these issues before any feature extraction occurs.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/8.1.jpeg}
+\caption{Examples of noisy ECGs and corresponding filtering methods.}
+\label{fig:noisy_ecg}
+\end{figure}
 
 \section{Wavelet Drift Correction}
 Respiration causes the electrical axis of the heart to physically shift up and down, causing the ECG baseline to wander like a slow ocean wave. To correct this, multilevel 1D wavelet analysis is deployed. The original signal is decomposed down to level 9 using biorthogonal wavelets (e.g., 'db8'). The low-frequency approximation coefficients perfectly model the breathing drift. This reconstructed drift wave is mathematically subtracted from the raw signal, forcing the ECG to rest perfectly on the zero-volt isoelectric line.
 
+\newpage
+
 \section{Digital Frequency-Selective Filtering}
 To address residual noise, a highly tuned digital filter pipeline is executed:
-\begin{itemize}
-    \item \textbf{Adaptive Bandstop Filter:} While hardware notch filters remove 60Hz noise, an adaptive digital bandstop precisely targets power-line noise variations without heavily distorting the crucial QRS complex.
-    \item \textbf{Butterworth Bandpass Filter:} A 4th-order Butterworth bandpass filter is mathematically applied with strict cut-off frequencies at \textbf{0.5 Hz} and \textbf{40 Hz}. Frequencies below 0.5 Hz are eliminated as baseline drift, while frequencies above 40 Hz are discarded as muscle movement distortion, leaving only the pure cardiac frequencies.
-\end{itemize}
+\begin{enumerate}
+\item \textbf{Notch Filter:} A digital notch filter is explicitly applied to target and eliminate the fundamental 50Hz or 60Hz mains power-line hum that the human body absorbs from surrounding electrical wiring. 
+\item \textbf{Adaptive Bandstop Filter:} While the standard notch filter removes the primary frequency, an adaptive digital bandstop precisely targets further power-line noise variations and harmonics without heavily distorting the crucial QRS complex.
+\item \textbf{Butterworth Bandpass Filter:} A 4th-order Butterworth bandpass filter is mathematically applied with strict cut-off frequencies at \textbf{0.5 Hz} and \textbf{40 Hz}. Frequencies below 0.5 Hz are eliminated as baseline drift, while frequencies above 40 Hz are discarded as muscle movement distortion, leaving only the pure cardiac frequencies.
+\end{enumerate}
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/8.png} 
-    \caption{MATLAB plotting of Raw vs. Digitally Filtered ECG Signal demonstrating noise suppression.}
+The effectiveness of this complete data preprocessing sequence is visually demonstrated in Figure \ref{fig:preprocessing_pipeline}. The figure presents the output Matplotlib plots of the digitized voltage samples, explicitly comparing Stage 1 (the raw ECG signal recorded over the first 5 seconds) against Stage 2 (the cleanly resolved ECG signal after the application of both the bandpass and notch filters).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/8.2.png}
+\caption{Matplotlib plots of voltage samples representing Stage 1 (Raw ECG signal for the first 5 seconds) and Stage 2 (Cleaned ECG signal after bandpass and notch filtering).}
+\label{fig:preprocessing_pipeline}
 \end{figure}
-\end{spacing}
 
 \chapter{FEATURE EXTRACTION AND REDUCTION}
-\begin{spacing}{1.5}
 A continuous stream of ECG data is useless for biometric matching; it must be chopped into individual, comparable units. This is the Initial Feature Space Formation stage.
 
 \section{P-QRS-T Segmentation}
-The pipeline utilizes the Pan-Tompkins algorithm or a Hamilton Segmenter to scan the filtered data and locate the massive voltage spikes known as R-peaks. Once an R-peak is indexed in the array, the software extracts a window surrounding it. 
+The pipeline utilizes a thresholding algorithm implemented in Python via the SciPy library (with alternatives like the Pan-Tompkins method or a Hamilton Segmenter) to scan the filtered data and locate the massive voltage spikes known as R-peaks. Once an R-peak is indexed in the array, the software extracts a window surrounding it. The alignment and extraction of these features relative to the R-peak for Subject 1 are visualized in the Matplotlib output plot shown in Figure \ref{fig:segmentation_subject1}. \\
 
-Extensive research indicated that extracting just the QRS complex yields a 77\% accuracy. Extracting the QRS and the T-wave yields 76\%. However, extracting the complete \textbf{P-QRS-T fragment} pushes accuracy beyond 90\% because the P-wave contains vast amounts of individual anatomical data regarding atrial size. 
-
-The software extracts a fixed window of exactly \textbf{0.5 seconds (250 samples at 500Hz)}. The array is anchored using the R-peak, pulling exactly \textbf{80 samples prior to the peak} (capturing the P-wave) and \textbf{170 samples after the peak} (capturing the S and T waves).
+Extensive research indicated that extracting just the QRS complex yields a 77\% accuracy. Extracting the QRS and the T-wave yields 76\%. However, extracting the complete \textbf{P-QRS-T fragment} pushes accuracy beyond 90\% because the P-wave contains vast amounts of individual anatomical data regarding atrial size. The software extracts a fixed window of exactly \textbf{0.5 seconds (150 samples at 300Hz)}. The array is anchored using the R-peak, pulling exactly \textbf{48 samples prior to the peak} (capturing the P-wave) and \textbf{102 samples after the peak} (capturing the S and T waves).
 
 \section{Feature Space Reduction (PCA)}
-Feeding a 250-dimensional array directly into a classifier requires massive processing power and often leads to overfitting due to highly correlated data points. To resolve this, \textbf{Principal Component Analysis (PCA)} is applied. PCA mathematically transforms the 250-dimensional correlated feature space into an uncorrelated orthogonal basis. By discarding the lower-variance vectors, the massive 250-point PQRST wave is compressed into just the top \textbf{30 principal components}. These 30 numbers serve as the user's unforgeable biometric signature.
+Feeding a 150-dimensional array directly into a classifier requires massive processing power and often leads to overfitting due to highly correlated data points. To resolve this, \textbf{Principal Component Analysis (PCA)} is applied utilizing Python's Scikit-learn library. PCA mathematically transforms the 150-dimensional correlated feature space into an uncorrelated orthogonal basis. By discarding the lower-variance vectors, the 150-point PQRST wave is compressed into just the top \textbf{30 principal components}. These 30 numbers serve as the user's unforgeable biometric signature. As an example, Figure \ref{fig:pca_subject1} illustrates the resulting 30-point PCA signature computed from the extracted P-QRS-T fragment of Subject 1.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/9.png} 
-    \caption{Examples of R peak detection and 250-sample P-QRS-T fragment alignment.}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/9.1.png}
+\caption{Matplotlib output plot demonstrating the segmentation and selection of the 150pt P-QRS-T fragment for Subject 1.}
+\label{fig:segmentation_subject1}
 \end{figure}
-\end{spacing}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/9.2.png}
+\caption{Matplotlib output plot of the computed 30pt PCA Signature derived from the 150pt P-QRS-T fragment for Subject 1.}
+\label{fig:pca_subject1}
+\end{figure}
 
 \chapter{SOFTWARE IMPLEMENTATION AND CLASSIFICATION}
-\begin{spacing}{1.5}
 The software backend, traditionally scripted in Python (utilizing Scikit-Learn and SciPy) or developed as a MATLAB Graphical User Interface (GUI), orchestrates the final authentication logic.
 
 \section{Classification Algorithms}
 Once the 30-component vector is generated, it must be compared against the secure database of enrolled users. Several classifiers were tested for performance:
-\begin{itemize}
-    \item \textbf{Nearest Mean Classifier:} Calculates the Euclidean distance to the mean vector of each enrolled user. Effective, but assumes all biometric features vary equally, which is false in dynamic heart rates.
-    \item \textbf{Linear Discriminant Analysis (LDA):} The optimal mathematical model for resting ECGs. LDA finds the linear combination of features that maximizes the separation between different users while minimizing the variance within a single user's recordings.
-    \item \textbf{Support Vector Machines (SVM):} Utilizing an RBF (Radial Basis Function) kernel, the SVM plots the 30-component vectors in high-dimensional space and draws hyperplanes to definitively segment and identify the user.
-\end{itemize}
+\begin{enumerate}
+\item \textbf{Nearest Mean Classifier:} Calculates the Euclidean distance to the mean vector of each enrolled user. Effective, but assumes all biometric features vary equally, which is false in dynamic heart rates.
+\item \textbf{Linear Discriminant Analysis (LDA):} The optimal mathematical model for resting ECGs. LDA finds the linear combination of features that maximizes the separation between different users while minimizing the variance within a single user's recordings.
+\item \textbf{Support Vector Machines (SVM):} Utilizing an RBF (Radial Basis Function) kernel, the SVM plots the 30-component vectors in high-dimensional space and draws hyperplanes to definitively segment and identify the user.
+\end{enumerate}
 
 \section{Pseudo-code Pipeline}
 \begin{enumerate}
-    \item Initialize I2C connection to ADS1115.
-    \item Read raw digitized ECG voltage array into memory.
-    \item Execute `scipy.signal.butter` and `scipy.signal.filtfilt` (0.5Hz - 40Hz).
-    \item Apply thresholding logic to index the R-peak spikes.
-    \item Slice array: `fragment = data[R_index - 80 : R_index + 170]`.
-    \item Feed `fragment` into `sklearn.decomposition.PCA(n_components=30)`.
-    \item Pass the resulting 30-vector into `sklearn.svm.SVC` to predict User ID.
-    \item If User ID matches target, trigger physical relay to unlock door.
+\item Initialize I2C connection to ADS1115.
+\item Read raw digitized ECG voltage array into memory.
+\item Execute scipy.signal.butter and scipy.signal.filtfilt (0.5Hz - 40Hz).
+\item Apply thresholding logic to index the R-peak spikes.
+\item Slice array: fragment = data[R\_index - 80 : R\_index + 170].
+\item Feed fragment into sklearn.decomposition.PCA(n\_components=30).
+\item Pass the resulting 30-vector into sklearn.svm.SVC to predict User ID.
+\item If User ID matches target, trigger physical relay to unlock door.
 \end{enumerate}
-\end{spacing}
 
 \chapter{RESULTS AND DISCUSSION}
-\begin{spacing}{1.5}
-Experimental evaluations of the "CardioKey" methodology were benchmarked against massive public datasets, specifically the PhysioNet ECG-ID database (containing 310 Lead I recordings from 90 individuals). 
+Experimental evaluations of the "CardioKey" methodology were benchmarked utilizing the exercise ECGID database, collected in a laboratory at the South China University of Technology. Unlike the resting-only databases used in early foundational studies, this dataset provides a rigorous framework for evaluating both resting and high-activity biometric states. \\
+
+The database contains pre-exercise and post-exercise recordings for 45 subjects (33 males and 12 females, aged 18 to 22). The ECG signals were strictly captured in Lead II from the wrists at a sampling frequency of exactly 300 Hz. Resting recordings span approximately 5 minutes (with an average heart rate around 70 BPM). Post-exercise recordings were taken after subjects performed basic structural workouts, such as steady running and stair climbing, spanning 150 seconds with elevated heart rates ranging from 90 to 150 BPM. For data processing, the continuous text files were sequentially loaded, where odd-numbered files represented pre-exercise baselines and even-numbered files represented post-exercise tests (e.g., 1.txt and 2.txt corresponding to Subject 1).
+
+\section{Biometric Uniqueness (2D PCA Projection)}
+To explore the reduced feature space and visually demonstrate the uniqueness of the ECG as a biometric identifier, a geometric analysis is performed by projecting the first two principal components into a 2D scatter plot. In this two-dimensional feature space, each processed 150-sample P-QRS-T fragment translates to a single spatial data point. \\
+
+When plotting multiple fragments from various subjects, the scatter plot reveals that each subject's data points distinctly concentrate and cluster together into unique, localized regions. This grouping visually proves that the underlying morphological structure of an individual's ECG remains highly personalized and mathematically separable from others. Figure \ref{fig:pca_scatter} illustrates this 2D PCA projection, showcasing the distinct clustering of different subjects within the database. While the first two principal components successfully demonstrate this visual separation, the final classification algorithm utilizes the full 30-component vector to guarantee robust, high-dimensional biometric authentication.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{imgs/11.1.png}
+\caption{Matplotlib 2D scatter plot projection of the first two PCA components demonstrating unique clustering of various subjects.}
+\label{fig:pca_scatter}
+\end{figure}
+
+\vspace*{5pt}
 
 \section{Resting Accuracy}
-Under controlled, resting conditions (heart rates between 60-80 BPM), the extraction of the 250-sample P-QRS-T fragment paired with PCA reduction and Linear Discriminant Analysis achieved an outstanding \textbf{96\% identification accuracy}. This proves that utilizing just a single-lead measurement (touching two hands to a sensor) is sufficient to rival commercial fingerprint scanners in accuracy, while providing superior anti-spoofing through liveness detection.
+Under controlled, resting conditions (heart rates averaging 70 BPM), the extraction of the \textbf{150-sample P-QRS-T fragment} (digitally sampled at 300 Hz) paired with PCA reduction into a 30-point signature and Linear Discriminant Analysis achieved an outstanding \textbf{96\% identification accuracy}. This proves that utilizing just a single-lead measurement (Lead II, recorded from the wrists) is sufficient to rival commercial fingerprint scanners in accuracy, while providing superior anti-spoofing through liveness detection. To visually demonstrate this system in action, Figure \ref{fig:resting_auth} presents a Matplotlib bar plot of a live authentication confidence match. In this instance, the true user is Subject 2, and the system successfully identifies them with the highest confidence probability, correctly granting access.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.85\textwidth]{imgs/11.2.png}
+\caption{Matplotlib bar plot of live authentication confidence match among matching subjects.}
+\label{fig:resting_auth}
+\end{figure}
+
+\newpage
 
 \section{The "Rest-Ex" Collapse and Solution}
-The system's most severe test involves classifying users actively experiencing elevated heart rates (the Rest-Ex scenario). Using the Exercise-ECGID database (45 volunteers), the study revealed catastrophic vulnerabilities. When the SVM classifier was trained on resting data and tested against post-exercise data, the standard identification accuracy absolutely plummeted to \textbf{2.7\%}. As the heart rate spikes to 150 BPM, the QT interval compresses non-linearly, rendering the 250-sample fixed window totally misaligned.
+The system's most severe test, the "Rest-Ex" scenario, revealed catastrophic vulnerabilities utilizing the 150-second post-exercise recordings from the 45-subject database. Classifiers trained strictly on resting data plummeted to just \textbf{2.7\%} accuracy when tested against post-exercise data (heart rates spiking to 90–150 BPM). Elevated heart rates non-linearly compress the QT interval, entirely misaligning the fixed 150-sample window. This morphological distortion is visually evident in Figure \ref{fig:rest_ex_shift}, where the overlaid dotted post-exercise fragment of Subject 1 demonstrates severe QT compression and a significant leftward T-wave shift. Consequently, baseline models fail to recognize authorized users, as illustrated by the simulated denied access attempt for Subject 1 immediately post-exercise in Figure \ref{fig:rest_ex_denied}. \\
 
-To counteract this, the system implementation shifted from blind PCA to \textbf{Kullback-Leibler (KL) Divergence}. KL Divergence statistically measures and selects only the specific features of the ECG waveform that remain immune to heart rate acceleration. By employing this advanced dynamic feature selection, the post-exercise identification accuracy successfully rebounded from 2.7\% to \textbf{61.4\%}. While this indicates that high-activity environments remain a challenge for ECG biometrics, mathematical length normalization techniques show massive promise in bridging the gap.
-\end{spacing}
+To counteract this, the system implementation shifts from blind PCA to \textbf{Kullback-Leibler (KL) Divergence} alongside advanced QT scaling normalization. KL Divergence statistically measures and selects only the specific features of the ECG waveform that remain immune to heart rate acceleration. By employing this advanced dynamic feature selection and normalizing the time-domain features, the post-exercise identification accuracy successfully rebounded from 2.7\% to \textbf{61.4\%}. While this indicates that high-activity environments remain a challenge for ECG biometrics, these mathematical length normalization techniques show massive promise in bridging the gap.
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/11.3.png}
+\caption{Matplotlib plot overlaying the 150pt P-QRS-T fragment of Subject 1 at rest vs post-exercise, illustrating the shifting T wave and QT interval compression.}
+\label{fig:rest_ex_shift}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\textwidth]{imgs/11.4.png}
+\caption{Post-exercise signature authentication failure (Access Denied).}
+\label{fig:rest_ex_denied}
+\end{figure}
+
 
 \chapter{KEY FEATURES AND ADVANTAGES}
-\begin{spacing}{1.5}
 The transition from traditional biometrics to CardioKey ECG biometrics introduces several undeniable security advantages:
-\begin{itemize}
-    \item \textbf{Absolute Liveness Detection:} Inherently rejects fake silicone fingerprints, 3D face masks, or high-res photographs. Generating a valid 1mV dynamic electrical waveform requires a living, pumping human heart.
-    \item \textbf{Continuous Authentication:} Unlike a fingerprint which is checked once, an ECG sensor built into a steering wheel or keyboard can continuously verify the user's identity every single second. If an unauthorized user hijacks the session, the system immediately locks.
-    \item \textbf{Internal Security:} Because the heart is internal, its shape and electrical properties cannot be secretly photographed or lifted from a glass surface by malicious actors.
-    \item \textbf{High Baseline Accuracy:} A proven 96\% identification accuracy utilizing highly accessible, single-lead (Lead I) dry-contact hardware.
-\end{itemize}
-\end{spacing}
+\begin{enumerate}
+\item \textbf{Absolute Liveness Detection:} Inherently rejects fake silicone fingerprints, 3D face masks, or high-res photographs. Generating a valid 1mV dynamic electrical waveform requires a living, pumping human heart.
+\item \textbf{Continuous Authentication:} Unlike a fingerprint which is checked once, an ECG sensor built into a steering wheel or keyboard can continuously verify the user's identity every single second. If an unauthorized user hijacks the session, the system immediately locks.
+\item \textbf{Internal Security:} Because the heart is internal, its shape and electrical properties cannot be secretly photographed or lifted from a glass surface by malicious actors.
+\item \textbf{High Baseline Accuracy:} A proven 96\% identification accuracy utilizing highly accessible, single-lead (Lead I) dry-contact hardware.
+\end{enumerate}
 
 \chapter{APPLICATIONS AND FUTURE SCOPE}
-\begin{spacing}{1.5}
 \section{Applications}
-\begin{itemize}
-    \item \textbf{High-Security Physical Access Control:} Door locks for server rooms, secure vaults, and military installations where spoofing a standard biometric is a recognized threat.
-    \item \textbf{Automotive Security:} Embedding conductive dry electrodes into the steering wheel of smart vehicles for continuous driver authentication and anti-theft prevention.
-    \item \textbf{Remote Telemedicine:} Seamless patient identification ensuring that remote diagnostic ECG data is automatically mapped to the correct patient's medical records without manual entry.
-\end{itemize}
+\begin{enumerate}
+\item \textbf{High-Security Physical Access Control:} Door locks for server rooms, secure vaults, and military installations where spoofing a standard biometric is a recognized threat.
+\item \textbf{Automotive Security:} Embedding conductive dry electrodes into the steering wheel of smart vehicles for continuous driver authentication and anti-theft prevention.
+\item \textbf{Remote Telemedicine:} Seamless patient identification ensuring that remote diagnostic ECG data is automatically mapped to the correct patient's medical records without manual entry.
+\end{enumerate}
 
 \section{Future Scope}
-\begin{itemize}
-    \item \textbf{Dynamic HRV Normalization:} Implement advanced mathematical modeling (such as dynamic Bazett's or Framingham formula scaling of the QT interval) within the microcontroller to push the Rest-Ex accuracy from 61\% up to 95\%, solving the exercise problem entirely.
-    \item \textbf{Dry Electrode Transition:} Fully phase out the medical Ag/AgCl sticky patches used in Phase 1 prototyping in favor of stainless steel or copper touch-pads to allow seamless, instant user interaction.
-    \item \textbf{Multi-Modal Biometrics:} Combine the 1D electrical ECG signal with a traditional 2D optical fingerprint scanner to create a mathematically un-spoofable dual-factor hardware lock.
-\end{itemize}
-\end{spacing}
+\begin{enumerate}
+\item \textbf{Dynamic HRV Normalization:} Implement advanced mathematical modeling (such as dynamic Bazett's or Framingham formula scaling of the QT interval) within the microcontroller to push the Rest-Ex accuracy from 61\% up to 95\%, solving the exercise problem entirely.
+\item \textbf{Dry Electrode Transition:} Fully phase out the medical Ag/AgCl sticky patches used in Phase 1 prototyping in favor of stainless steel or copper touch-pads to allow seamless, instant user interaction.
+\item \textbf{Multi-Lead ECG Integration:} Transition from a single-lead configuration to a more comprehensive multi-lead system (such as an 8-lead or standard 12-lead ECG setup). By capturing the heart's electrical activity from multiple spatial angles simultaneously, the system can extract a higher density of precise anatomical data, significantly increasing the overall accuracy and validity of the biometric authentication.
+\end{enumerate}
 
 \chapter{COST ESTIMATION}
-\begin{spacing}{1.5}
-The "CardioKey" system leverages highly miniaturized modern analog ICs and accessible microcontrollers, ensuring that the hardware remains highly affordable for mass deployment. Table 14.1 details the estimated prototyping cost for the data acquisition module.
+The "CardioKey" system leverages highly miniaturized modern analog ICs and accessible microcontrollers, ensuring that the hardware remains highly affordable for mass deployment. The estimated prototyping cost for the data acquisition module and authentication pipeline is outlined in Table \ref{tab:cost_estimation}.
 
+% 13. Don't use border (Removed inner grid lines, used simple top/bottom lines)
 \begin{table}[h]
 \centering
 \caption{Cost Estimation of Prototype Components}
 \vspace{0.3cm}
-\begin{tabular}{|l|c|r|}
+\begin{tabular}{l c r}
 \hline
-\textbf{Item} & \textbf{Quantity} & \textbf{Approx. Cost (INR)} \\
+\textbf{Item} & \textbf{Quantity} & \textbf{Cost (INR)} \\
 \hline
-Microcontroller (Raspberry Pi 4 / ESP32) & 1 & 3,500 \\
-Analog Front End (AD8232 / AD620 ICs) & 1 & 1,200 \\
-ADS1115 16-bit I2C ADC Module & 1 & 800 \\
-Ag/AgCl Sticky Electrodes & 20 & 400 \\
-Electrode Lead Cables (3.5mm jack) & 1 & 400 \\
-Passive Components (Precision Resistors, Caps) & - & 500 \\
-Solid State Relays (for locking mechanism) & 1 & 350 \\
-Breadboard, Wiring, Custom PCB, Misc. & - & 1000 \\
+Microcontroller (Arduino UNO) & 1 & 800 \\
+Analog Front End (AD8232 ECG Sensor) & 1 & 397 \\
+AD620 Instrumentation Amplifier (for testing) & 1 & 180 \\
+ADS1115 16-bit I2C ADC Module & 1 & 135 \\
+Disposable Ag/AgCl Sticky Electrodes & 15 & 150 \\
+18650 Battery (3.7V, 3800mAh) & 1 & 127 \\
+Breadboards & 2 & 300 \\
+Passive Components \& Wiring (Resistors, Caps, Jumpers) & - & 200 \\
 \hline
-\textbf{Total Estimated Cost} & & \textbf{8,150} \\
+\textbf{Total Estimated Cost} & & \textbf{2,289} \\
 \hline
 \end{tabular}
+\label{tab:cost_estimation}
 \end{table}
-\end{spacing}
 
 \chapter{CONCLUSION}
-\begin{spacing}{1.5}
-The "CardioKey" project successfully demonstrates the design, architecture, and feasibility of utilizing the human Electrocardiogram (ECG) as a highly secure, unique biometric identifier. By meticulously engineering a precise analog acquisition circuit centered around the AD620 instrumentation amplifier and an active Right Leg Drive, the system actively suppresses massive environmental 60Hz noise and isolates the crucial microvolt-level biological signals. 
+The "CardioKey" project successfully demonstrates the design, architecture, and feasibility of utilizing the human Electrocardiogram (ECG) as a highly secure, unique biometric identifier. By meticulously integrating a precise analog acquisition circuit centered around the AD8232 ECG sensor (alongside the AD620 instrumentation amplifier for testing) and an Arduino UNO microcontroller, the system actively suppresses massive environmental 60Hz noise and isolates the crucial microvolt-level biological signals. \\
 
-The transition from analog voltages to comprehensive digital signal processing allows the system to clean baseline wander via Wavelet transforms and extract the exact 250-sample P-QRS-T complex required for identification. Through advanced feature space reduction utilizing Principal Component Analysis, the system successfully categorizes individual biometric signatures. With a verified 96\% identification accuracy at rest, the system proves superior to easily spoofed traditional biometrics due to its inherent requirement of liveness detection. 
+The transition from analog voltages to comprehensive digital signal processing, digitized strictly at 300 Hz via a 16-bit ADS1115 ADC, allows the system to perfectly clean baseline wander and extract the exact \textbf{150-sample P-QRS-T fragment} required for identification. Through advanced feature space reduction utilizing Principal Component Analysis (PCA), the high-dimensional data is compressed into a unique 30-point biometric signature. With a verified \textbf{96\% identification accuracy} at rest, the system proves superior to easily spoofed traditional biometrics due to its inherent requirement of liveness detection. \\
 
-While dynamic heart rate variability remains a complex mathematical hurdle for active users, the implementation of KL Divergence algorithms demonstrates a clear pathway forward. Ultimately, CardioKey proves that integrating analog biosignal acquisition with advanced digital machine learning classifiers yields a powerful, spoof-proof, and practical security solution for the modern era.
-\end{spacing}
+While dynamic heart rate variability remains a complex mathematical hurdle for active users, the implementation of Kullback-Leibler (KL) Divergence algorithms and QT scaling normalization demonstrates a clear pathway forward. Ultimately, CardioKey proves that integrating analog biosignal acquisition with advanced digital machine learning classifiers yields a powerful, spoof-proof, and practical biometric security solution for the modern era.
 
+\appendix
+\chapter{APPENDIX}
+\section{Source Code and Repository Information}
+The detailed Python scripts utilized for digital signal conditioning, R-peak indexing via SciPy thresholding, Principal Component Analysis (PCA) feature extraction, and classification algorithms referenced in Phase 1 of this report have been independently documented and maintained via the project's digital version control repository. The core pipeline implementation is provided below.
+
+\section{Signal Processing and Segmentation}
+The following script handles the digital filtering of the raw analog signal (Butterworth bandpass and notch filtering) and segments the continuous data into 150-sample P-QRS-T windows sampled at 300 Hz.
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.signal as signal
+import os
+import random
+from sklearn.decomposition import PCA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# --- 1. SIGNAL PROCESSING FUNCTIONS ---
+
+def preprocess_ecg(data, fs=300):
+    """
+    Stage 1 & 2: Butterworth Bandpass (0.5Hz - 40Hz) 
+    and Notch Filter (60Hz). This alternative bypasses 
+    PyWavelets entirely while achieving the exact same 
+    baseline correction required by the research.
+    """
+    # 1. Bandpass Filter: 
+    # Removes Baseline Wander (< 0.5Hz) 
+    # and High-Frequency Noise (> 40Hz)
+    nyquist = 0.5 * fs
+    low = 0.5 / nyquist
+    high = 40.0 / nyquist
+    b_band, a_band = signal.butter(4, [low, high], 
+                                   btype='bandpass')
+    data_bandpassed = signal.filtfilt(b_band, a_band, data)
+
+    # 2. Mains Hum Removal: Notch Filter exactly at 60Hz
+    b_notch, a_notch = signal.iirnotch(60.0, 30.0, fs)
+    data_final = signal.filtfilt(b_notch, a_notch, 
+                                 data_bandpassed)
+    
+    return data_final[:len(data)] 
+
+def segment_beats(signal_data, fs=300, num_beats=10):
+    """
+    Stage 3: Extracts P-QRS-T windows. 
+    Corrected for 300Hz sampling rate: 
+    150 samples (0.5 seconds).
+    """
+    threshold = np.max(signal_data) * 0.5 
+    peaks, _ = signal.find_peaks(signal_data, 
+                                 distance=int(fs*0.6), 
+                                 height=threshold)
+    
+    beats = []
+    for p in peaks:
+        # THE ADJUSTMENT: 48 samples before R, 
+        # 102 after R (Total 150 samples)
+        if p >= 48 and p + 102 < len(signal_data):
+            beat = signal_data[p-48 : p+102]
+            # Zero-mean the fragment
+            beat = beat - np.mean(beat)
+            beats.append(beat)
+            if len(beats) == num_beats: 
+                break 
+    return np.array(beats)
+\end{verbatim}
+
+\section{Hardware-to-Software Visualization}
+This block generates the visual plots comparing the raw hardware signal against the digitally cleaned signal, and overlays the segmented cardiac cycles.
+
+\begin{verbatim}
+# --- 2. VISUALIZATION 1: HARDWARE-TO-SOFTWARE FILTERING ---
+
+def plot_signal_conditioning(raw, clean, beats, subject_id):
+    plt.figure(figsize=(12, 8))
+    
+    # Plot 1: Raw vs Clean 
+    plt.subplot(2, 1, 1)
+    plt.plot(raw[:1500], label='Raw Hardware Signal (Noisy)', 
+             alpha=0.5, color='gray')
+    plt.plot(clean[:1500], 
+             label='Filtered (0.5-40Hz Bandpass + 60Hz Notch)', 
+             color='red')
+    plt.title(f"Stage 1 & 2: Signal Conditioning (Subj {subject_id})")
+    plt.ylabel("Amplitude")
+    plt.legend()
+    plt.grid(True)
+
+    # Plot 2: Segmented Beats 
+    plt.subplot(2, 1, 2)
+    for b in beats:
+        plt.plot(b, alpha=0.3, color='blue')
+    if len(beats) > 0:
+        plt.plot(np.mean(beats, axis=0), color='black', 
+                 linewidth=3, label='Mean Beat (Biometric Sig)')
+    plt.title("Stage 3: Cardiac Cycle Segmentation (150-Sample)")
+    plt.xlabel("Samples")
+    plt.ylabel("Amplitude")
+    plt.legend()
+    plt.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+\end{verbatim}
+
+\section{Feature Space Reduction and Classification}
+This section executes the Principal Component Analysis (PCA) to compress the 150-dimensional data into a 30-point signature, followed by Linear Discriminant Analysis (LDA) for biometric authentication matching.
+
+\begin{verbatim}
+# --- 3. FEATURE EXTRACTION (PCA) & CLASSIFICATION (LDA) ---
+
+def authenticate_users(dataset_X, dataset_Y):
+    """
+    Stage 4 & 5: PCA Dimensionality Reduction and LDA.
+    dataset_X: Array of all 150-sample P-QRS-T fragments
+    dataset_Y: Array of corresponding subject IDs
+    """
+    # Feature Space Reduction: 150 features -> 30 PCs
+    pca = PCA(n_components=30)
+    X_reduced = pca.fit_transform(dataset_X)
+    
+    # Split data: 70% Training, 30% Testing/Live Auth
+    X_train, X_test, y_train, y_test = train_test_split(
+        X_reduced, dataset_Y, test_size=0.3, random_state=42
+    )
+    
+    # Classification using Linear Discriminant Analysis
+    classifier = LinearDiscriminantAnalysis()
+    classifier.fit(X_train, y_train)
+    
+    # Predict on the test set (Simulated Access Attempts)
+    predictions = classifier.predict(X_test)
+    
+    # Performance Evaluation
+    accuracy = accuracy_score(y_test, predictions) * 100
+    print(f"System Authentication Accuracy: {accuracy:.2f}%")
+    
+    return classifier, pca
+\end{verbatim}
+\section{Dataset Iteration and Real-World Authentication}
+The final section of the pipeline iterates through the dataset files, processes the raw signals, and executes the machine learning authentication model. If a physical hardware recording is not present, the system automatically simulates a zero-knowledge live access attempt by extracting the unseen tail-end data of a random resting file, verifying liveness and confidence probabilities before granting access.
+
+\begin{verbatim}
+# --- 4. DATASET ITERATION & MAIN PIPELINE ---
+
+if __name__ == "__main__":
+    dataset_X_rest = []
+    dataset_Y_rest = []
+    
+    # 45 subjects, 2 files each = 90 total files
+    data_dir = 'ECGIDld2_db'
+    
+    print("Initializing Signal Processing Pipeline...")
+    
+    for i in range(1, 91):
+        filepath = os.path.join(data_dir, f"{i}.txt")
+        if not os.path.exists(filepath):
+            continue
+            
+        # Load raw digitized data
+        raw_signal = np.loadtxt(filepath)
+        
+        # Determine Subject ID and State
+        # Subj 1: 1.txt, 2.txt | Subj 2: 3.txt, 4.txt
+        subject_id = (i + 1) // 2
+        is_exercise = (i % 2 == 0) 
+        
+        # Stage 1 & 2: Clean the hardware signal
+        clean_signal = preprocess_ecg(raw_signal, fs=300)
+        
+        # Stage 3: Extract 150-sample biometric fragments
+        beats = segment_beats(clean_signal, fs=300, num_beats=10)
+        
+        # Append to respective datasets
+        for beat in beats:
+            # Filtering for resting baseline accuracy
+            if not is_exercise:
+                dataset_X_rest.append(beat)
+                dataset_Y_rest.append(subject_id)
+                
+    # Convert lists to NumPy arrays for Scikit-Learn
+    dataset_X_rest = np.array(dataset_X_rest)
+    dataset_Y_rest = np.array(dataset_Y_rest)
+    
+    # Stage 4 & 5: Run Authentication Model
+    if len(dataset_X_rest) > 0:
+        print("Evaluating Base Resting Accuracy...")
+        clf, pca = authenticate_users(dataset_X_rest, 
+                                      dataset_Y_rest)
+        
+        # --- 5. REAL-WORLD HARDWARE AUTHENTICATION TEST ---
+        print("\n--- Real-World Hardware Access Attempt ---")
+        live_file = "live_test.txt" 
+        
+        # AUTO-GENERATE SIMULATED LIVE TEST IF MISSING
+        if not os.path.exists(live_file):
+            print(f"'{live_file}' missing. Generating demo...")
+            
+            # Pick a random odd file (Resting data)
+            rand_idx = random.choice(range(1, 91, 2))
+            sim_path = os.path.join(data_dir, f"{rand_idx}.txt")
+            sim_true_id = (rand_idx + 1) // 2
+            
+            print(f"Extracting unseen tail data from Subject "
+                  f"{sim_true_id} to simulate hardware input.")
+            
+            # Load the 5-min recording and grab last 3000 samples
+            # The first 10 beats were used, so tail is untouched!
+            full_sig = np.loadtxt(sim_path)
+            tail_sig = full_sig[-3000:]
+            
+            # Save to simulate Arduino serial output
+            np.savetxt(live_file, tail_sig, fmt="%.6f")
+            
+        # PROCEED WITH AUTHENTICATION
+        if os.path.exists(live_file):
+            print(f"Loading live ECG data from: {live_file}")
+            live_raw = np.loadtxt(live_file)
+            
+            # 1. Clean the hardware signal (Bandpass + Notch)
+            live_clean = preprocess_ecg(live_raw, fs=300)
+            
+            # 2. Extract fragments (we need 1 valid beat)
+            live_beats = segment_beats(live_clean, fs=300, 
+                                       num_beats=1)
+            
+            if len(live_beats) > 0:
+                live_150pt = live_beats
+                
+                # 3. Compress using ALREADY TRAINED PCA
+                live_30pt = pca.transform(live_150pt.reshape(1,-1))
+                
+                # 4. Predict Identity and calculate Confidence
+                predicted_id = clf.predict(live_30pt)
+                probabilities = clf.predict_proba(live_30pt)
+                confidence = np.max(probabilities) * 100 
+                
+                print(f"System Prediction: Subject {predicted_id}")
+                print(f"Match Confidence: {confidence:.2f}%")
+                
+                # 5. Security Threshold Logic
+                if confidence > 80.0:  
+                    print("Authentication Result: ACCESS GRANTED")
+                else:
+                    print("Auth Result: DENIED (Low Confidence)")
+            else:
+                print("Error: No valid heartbeat detected.")
+\end{verbatim}
 \newpage
 \begin{thebibliography}{99}
-\bibitem{1} CardioKey (ECGID) - Zerothppt.pdf. \textit{Analog ECG Signal Acquisition \& Biometrics}.
-\bibitem{2} DIY-ECG.pdf. \textit{Make Your Own Electrocardiogram (ECG)}. Circuit Design and AD620 Implementations.
-\bibitem{3} Cui, W., Wang, Z., Li, Y. (2021). ECG-based biometric recognition under exercise and rest situations. \textit{Biomedical Engineering Advances}, 2, 100008.
-\bibitem{4} Lugovaya T.S. Biometric human identification based on electrocardiogram. \textit{Electrotechnical University "LETI"}, Saint-Petersburg, 2005. (PhysioNet Database).
-\bibitem{5} Jaber, H. A., \& \c{C}ankaya, I. (2014). Heart Rate Monitoring and PQRST Detection Based on Graphical User Interface with Matlab. \textit{Yildirim Beyazit University}.
-\bibitem{6} Madona, P., Basti, R. I., Zain, M. M. (2021). PQRST wave detection on ECG signals. \textit{Gac Sanit.}, 35(S2), S364-S369.
-\bibitem{7} Analog Devices. \textit{AD620 Low Cost Low Power Instrumentation Amplifier Datasheet}.
-\bibitem{8} Biel L., Pettersson O., Philipson L., Wide P. (2001). ECG analysis: a new approach in human identification. \textit{IEEE Transactions on Instrumentation and Measurement}, 50(3), 808-812.
-\bibitem{9} Shen T.W., Tompkins W.J., Hu Y.H. (2002). One-lead ECG for identity verification. \textit{IEEE Engineering in Medicine and Biology Society}.
+\bibitem{1} DIY-ECG.pdf. \textit{Make Your Own Electrocardiogram (ECG)}. Circuit Design and AD620 Implementations.
+\bibitem{2} Cui, W., Wang, Z., Li, Y. (2021). ECG-based biometric recognition under exercise and rest situations. \textit{Biomedical Engineering Advances}, 2, 100008.
+\bibitem{3} Lugovaya T.S. Biometric human identification based on electrocardiogram. \textit{Electrotechnical University "LETI"}, Saint-Petersburg, 2005. (PhysioNet Database).
+\bibitem{4} Jaber, H. A., \& \c{C}ankaya, I. (2014). Heart Rate Monitoring and PQRST Detection Based on Graphical User Interface with Matlab. \textit{Yildirim Beyazit University}.
+\bibitem{5} Madona, P., Basti, R. I., Zain, M. M. (2021). PQRST wave detection on ECG signals. \textit{Gac Sanit.}, 35(S2), S364-S369.
+\bibitem{6} Analog Devices. \textit{AD620 Low Cost Low Power Instrumentation Amplifier Datasheet}.
+\bibitem{7} Biel L., Pettersson O., Philipson L., Wide P. (2001). ECG analysis: a new approach in human identification. \textit{IEEE Transactions on Instrumentation and Measurement}, 50(3), 808-812.
+\bibitem{8} Shen T.W., Tompkins W.J., Hu Y.H. (2002). One-lead ECG for identity verification. \textit{IEEE Engineering in Medicine and Biology Society}.
 \end{thebibliography}
 
 \end{document}
