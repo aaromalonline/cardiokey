@@ -12,13 +12,14 @@
 \usepackage{svg}
 \usepackage{setspace}
 \usepackage{float}
+\usepackage{tocloft}
 
 % Page Geometry
 \geometry{top=1in, bottom=1in, left=1.25in, right=1in}
 
-% 2 & 15. Chapter size 16, heading 14, text 12, subheadings size 12(bold)
+% "CHAPTER" size 16 (All Caps), Chapter Title size 14, heading 14, text 12, subheadings size 12(bold)
 \titleformat{\chapter}[display]
-  {\normalfont\fontsize{16}{19}\bfseries\centering}{\chaptertitlename\ \thechapter}{10pt}{\fontsize{16}{19}\bfseries}
+  {\normalfont\fontsize{16}{19}\bfseries\centering}{\MakeUppercase{\chaptertitlename\ \thechapter}}{10pt}{\fontsize{14}{17}\bfseries}
 \titlespacing*{\chapter}{0pt}{-20pt}{20pt}
 
 \titleformat{\section}
@@ -26,7 +27,7 @@
 
 \titleformat{\subsection}
   {\normalfont\fontsize{12}{14}\bfseries}{\thesubsection}{1em}{}
-
+  
 % 9. All the text must be justified (LaTeX default is justified, this enforces it strictly without overflowing borders)
 \tolerance=1
 \emergencystretch=10000
@@ -43,24 +44,19 @@
 % -------------------------------------------------------------------
 \begin{titlepage}
 \begin{center}
-% Placeholder for CUSAT Logo
-\begin{figure}[h]
-\centering
-\includesvg[width=4cm]{imgs/cusat.svg}
-\end{figure}
 
-\vfill 
+\vspace*{0.5cm} % Optional top spacing to push the title down slightly
 
 \Large \textbf{MINI PROJECT - REPORT}\\[0.3cm]
 \large \textbf{on}\\[0.3cm]
 \LARGE \textbf{CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS}
 
-\vfill 
+\vfill
 
 \large \textit{Submitted by}\\[0.4cm]
 {\large \textbf{AARDRA S V – 24101868}\\ \textbf{AAROMAL A – 24101880}\\ \textbf{ABDULLA HILAL V K – 24101000}\\ \textbf{ABHIJITH R S – 24102771}}
 
-\vfill 
+\vfill
 
 \textit{in partial fulfillment of requirement for the award of the}\\[0.2cm]
 \textit{degree of}\\[0.4cm]
@@ -68,10 +64,16 @@
 \large \textit{in}\\[0.2cm]
 \Large \textbf{ELECTRONICS AND COMMUNICATION}
 
-\vfill 
+\vspace{1cm} % Adds neat spacing between the text and the logo
+
+% CUSAT Logo placed directly without the floating figure environment
+\includesvg[width=4cm]{imgs/cusat.svg}
+
+\vfill
 
 \large \textbf{DIVISION OF ELECTRONICS ENGINEERING}\\ \textbf{SCHOOL OF ENGINEERING}\\ \textbf{COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY}\\ \textbf{KOCHI--682022}\\[0.4cm]
 \textbf{MARCH 2026}
+
 \end{center}
 \end{titlepage}
 
@@ -87,11 +89,11 @@
 \end{center}
 
 % 3. In certificates specify it is mini project
-\large \textit{Certified that the mini project report (phase 1) entitled \textbf{“CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS”} is a bonafide work of \textbf{AARDRA S V (24101868)}, \textbf{AAROMAL A (24101880)}, \textbf{ABDULLA HILAL V K (24101000)}, and \textbf{ABHIJITH R S (24102771)}, towards the partial fulfilment for the award of the degree of B. Tech in Electronics and Communication of Cochin University of Science and Technology, Kochi-682022.}
+\large \textit{Certified that the mini project report entitled \textbf{“CARDIOKEY: ANALOG ECG SIGNAL ACQUISITION AND BIOMETRICS”} is a bonafide work of \textbf{AARDRA S V (24101868)}, \textbf{AAROMAL A (24101880)}, \textbf{ABDULLA HILAL V K (24101000)}, and \textbf{ABHIJITH R S (24102771)}, towards the partial fulfilment for the award of the degree of B. Tech in Electronics and Communication of Cochin University of Science and Technology, Kochi-682022.}
 
 \vspace{3cm}
 \textbf{Project Guide} \hfill \textbf{Head of the Division}\\[0.5cm]
-Ms. Reshmi R. Das \hfill Dr. Deepa Shankar
+Ms. Reshmi R. Das \hfill Dr. Deepa Sankar
 
 % -------------------------------------------------------------------
 % ACKNOWLEDGEMENT
@@ -103,7 +105,7 @@ Ms. Reshmi R. Das \hfill Dr. Deepa Shankar
 
 We express our sincere gratitude to the Cochin University of Science and Technology (CUSAT) and the Department of Electronics and Communication Engineering for providing us the opportunity and resources to undertake this mini project titled “CardioKey: Analog ECG Signal Acquisition and Biometrics.” \\
 
-We extend our heartfelt thanks to Dr. Deepa Shankar, Head of the Department of Electronics and Communication Engineering, for her support, encouragement, and for providing the necessary facilities and a motivating environment to carry out this work successfully. Our deepest gratitude goes to our Project Guide, Ms. Reshmi R. Das, for her constant supervision, insightful suggestions, and technical guidance. Her encouragement and expertise played a vital role in shaping this project to its final form. We also wish to express our appreciation to the laboratory faculty of the Department for their kind assistance and cooperation during the practical phases of the work. \\
+We extend our heartfelt thanks to Dr. Deepa Sankar, Head of the Department of Electronics and Communication Engineering, for her support, encouragement, and for providing the necessary facilities and a motivating environment to carry out this work successfully. Our deepest gratitude goes to our Project Guide, Ms. Reshmi R. Das, for her constant supervision, insightful suggestions, and technical guidance. Her encouragement and expertise played a vital role in shaping this project to its final form. We also wish to express our appreciation to the laboratory faculty of the Department for their kind assistance and cooperation during the practical phases of the work. \\
 
 Finally, we extend our sincere thanks to all faculty members of the Department for their valuable feedback during project reviews, and to our families and friends for their unwavering support and encouragement throughout this endeavor.
 
@@ -116,37 +118,55 @@ Finally, we extend our sincere thanks to all faculty members of the Department f
 \end{center}
 \vspace{14pt}
 
-Traditional biometric identification methods, such as fingerprint and facial recognition, are increasingly vulnerable to spoofing, fabrication, and external modification. The Electrocardiogram (ECG) presents a highly secure alternative as a biometric identifier due to its inherent uniqueness and the critical advantage of liveness detection. The core of the "CardioKey" project relies on the distinct anatomical and physiological characteristics of an individual's heart, which dictate the specific morphology of the P, QRS, and T waves. \\
-
-This project proposes a comprehensive system for analog ECG signal acquisition and biometric classification. The system utilizes a precision analog front-end, based on the AD8232 ECG sensor with lead-1 electrodes, butterworth filter and amplifier stages to acquire low-amplitude, Lead I heart signals of mV range amplified in V range while rejecting 60Hz mains hum and common-mode noise above 50 Hz. The acquired analog signal is digitally sampled in 300Hz using a 16-bit ADS1115 ADC (860SPS) and processed by an external computer using Arduino UNO as the data pipeline. \\
-
-Digital Signal Processing (DSP) techniques, including wavelet drift correction and butterworth \& notch filters, are applied in the data preprocessing stage, 150pt P-QRS-T fragments are segmented and selected per cardiac cycle in the initial feature formation stage, which is further compressed into 30pt PCA (Principal Component Analysis) signatures in the feature space reduction stage (Dimensionality reduction). Ten 30pt PCA signatures per P-QRS-T fragment (cardiac cycle) are computed for each subject. Finally, all the 10 30pt signatures per subject are fed into classification algorithms such as Linear Discriminant Analysis (LDA) and Nearest Mean by dividing the dataset 70-30 for train \& predict and further authenticate another 30pt signature generated for a subject in the database from his/her existing 10 - 30pt signatures. \\
-
-\newpage
- 
-Trained and classified on the publically available ECGID database of 45 subjects including 33 males and 12 females in ages 18-22 lead-2 sampled in 300Hz for rest and exercise conditions generating over 450 30pt signatures in rest conditions alone (10 per subject) using Python modules such as numpy, scipy, matplotlib, and scikit-learn. Experimental validation from this foundational database demonstrates an identification accuracy of up to 96\% under resting conditions and overcoming heart rate variability through normalisation \& QT scaling, proving that the ECG is a viable, universal, and unique biometric trait for practical access control systems.
+Traditional biometrics lack inherent liveness detection, making the Electrocardiogram (ECG)—with its unique P, QRS, and T wave morphology dictated by individual cardiac anatomy—a highly secure alternative. The "CardioKey" project proposes a comprehensive biometric system utilizing an AD8232 ECG sensor and a precision analog front-end to amplify Lead I heart signals while rejecting 60Hz mains hum, which is then digitized at 300 Hz using a 16-bit ADS1115 ADC and an Arduino UNO data pipeline. Through Digital Signal Processing (DSP) involving wavelet drift correction and digital filtering, 150-sample P-QRS-T fragments are segmented per cardiac cycle and compressed into 30-point biometric signatures using Principal Component Analysis (PCA) to be evaluated using Linear Discriminant Analysis (LDA) and Nearest Mean classifiers. Validated on the public ECGID database of 45 subjects using Python, the system achieves up to 96\% identification accuracy under resting conditions, and by addressing heart rate variability through normalization and QT scaling, proves the ECG is a viable, universal, and unforgeable biometric trait for practical access control systems.
 
 % -------------------------------------------------------------------
 % 4 & 5 & 14. CONTENT PAGES (TOC, LOF, LOT, ABBREVIATIONS)
 % -------------------------------------------------------------------
 \newpage
+
+% Rename the default headings to ALL CAPS
+\renewcommand{\contentsname}{CONTENTS}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\renewcommand{\listtablename}{LIST OF TABLES}
+
+% Center the Table of Contents heading
+\renewcommand{\cfttoctitlefont}{\hfill\normalfont\fontsize{16}{19}\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill\mbox{}}
 \tableofcontents
+
 \newpage
+% Center the List of Figures heading
+\renewcommand{\cftloftitlefont}{\hfill\normalfont\fontsize{16}{19}\bfseries}
+\renewcommand{\cftafterloftitle}{\hfill\mbox{}}
+% Adds List of Figures to the Table of Contents
+\addcontentsline{toc}{chapter}{LIST OF FIGURES} 
 \listoffigures
+
 \newpage
+% Center the List of Tables heading
+\renewcommand{\cftlottitlefont}{\hfill\normalfont\fontsize{16}{19}\bfseries}
+\renewcommand{\cftafterlottitle}{\hfill\mbox{}}
+% Adds List of Tables to the Table of Contents
+\addcontentsline{toc}{chapter}{LIST OF TABLES} 
 \listoftables
 \newpage
+
 \chapter*{ABBREVIATIONS}
 \addcontentsline{toc}{chapter}{ABBREVIATIONS}
 \begin{flushleft}
-\textbf{ADC} \hspace{2cm} Analog-to-Digital Converter \\
-\textbf{DSP} \hspace{2cm} Digital Signal Processing \\
-\textbf{ECG} \hspace{2cm} Electrocardiogram \\
-\textbf{LDA} \hspace{2cm} Linear Discriminant Analysis \\
-\textbf{MCU} \hspace{2cm} Microcontroller Unit \\
-\textbf{PCA} \hspace{2cm} Principal Component Analysis \\
-\textbf{RLD} \hspace{2cm} Right Leg Drive \\
-\textbf{SVM} \hspace{2cm} Support Vector Machine \\
+% The @{} removes the invisible left margin, p{2.5cm} forces the first column to be exactly 2.5cm wide
+\begin{tabular}{@{}p{2.5cm} l}
+\textbf{ADC} & Analog-to-Digital Converter \\[0.2cm]
+\textbf{DSP} & Digital Signal Processing \\[0.2cm]
+\textbf{ECG} & Electrocardiogram \\[0.2cm]
+\textbf{GUI} & Graphical User Interface \\[0.2cm]
+\textbf{LDA} & Linear Discriminant Analysis \\[0.2cm]
+\textbf{MCU} & Microcontroller Unit \\[0.2cm]
+\textbf{PCA} & Principal Component Analysis \\[0.2cm]
+\textbf{RLD} & Right Leg Drive \\[0.2cm]
+\textbf{SVM} & Support Vector Machine \\
+\end{tabular}
 \end{flushleft}
 
 % -------------------------------------------------------------------
@@ -271,9 +291,9 @@ For our specific implementation, an \textbf{Arduino UNO} is utilized as the cent
 
 By offloading the computational load, this setup makes the hardware highly modular and easy to plug into any standard computer. The connected external computer leverages its superior processing power to execute the heavy matrix mathematics required for the Digital Signal Processing (DSP) filters, Principal Component Analysis (PCA), and final Machine Learning classification (such as LDA, Nearest Mean, or SVM) utilizing Python libraries to seamlessly handle user authentication. \\
 
-\chapter{PHASE 1 – ANALOG CIRCUIT DESIGN AND TESTING}
+\chapter{ANALOG–  CIRCUIT DESIGN AND TESTING}
 \vspace{15pt}
-Phase 1 of the project strictly focused on the acquisition of the raw, biological analog signal. Because the electrical action potentials generated by the sinoatrial node of the heart dissipate through tissue, they arrive at the wrists with amplitudes of merely 1 millivolt ( $1 mV$ ). Extracting this signal requires immense amplification in an environment saturated with electromagnetic noise. \\ 
+First stage of the project strictly focused on the acquisition of the raw, biological analog signal. Because the electrical action potentials generated by the sinoatrial node of the heart dissipate through tissue, they arrive at the wrists with amplitudes of merely 1 millivolt ( $1 mV$ ). Extracting this signal requires immense amplification in an environment saturated with electromagnetic noise. \\ 
 
 \section{The Differential Input \& Output Amplifier Stages}
 The core of the acquisition system utilizes the \textbf{AD620 Instrumentation Amplifier}. Unlike standard operational amplifiers, the AD620 contains three internal op-amps and laser-trimmed resistors designed specifically for high precision and massive Common-Mode Rejection (CMR). It boasts a low input voltage noise of only $9 nV/\sqrt{Hz}$. \\
@@ -312,9 +332,31 @@ Breadboard testing with Lead I Ag/AgCl electrodes successfully isolated the P, R
 \label{fig:ad8232_cro}
 \end{figure}
 
+\section{LTspice Circuit Simulation}
+Before moving to physical breadboard implementation, the complete analog front-end—comprising the AD620 instrumentation amplifier, the Right Leg Drive (RLD), and the filtering stages—was modeled and validated using LTspice. \\
+
+To accurately test the circuit's amplification and noise rejection capabilities, a simulated AC voltage source was configured to mimic the biological 1 mV heart signal with noise. Additionally, massive 60 Hz mains interference and common-mode noise were intentionally injected into the simulation schematic.
+
+% Insert your LTspice circuit schematic here
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{imgs/circuitsim.jpeg} % Update with your actual schematic filename
+    \caption{LTspice schematic of the AD620 amplifier and filtering stages simulating the ECG acquisition.}
+    \label{fig:ltspice_circuit}
+\end{figure}
+
+The LTSpice simulation results validated the theoretical design calculations. The AC analysis demonstrated a deep attenuation curve exactly at the 60 Hz mark, confirming the effectiveness of the notch filter. Furthermore, the transient analysis (time-domain) output successfully showed the massive amplification of the simulated 1 mV heart signal into the target 1 V range while successfully clipping the high-frequency noise through the low-pass filter.
+
+% Insert your LTspice output waveform plot here
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/out.jpg} % Update with your actual waveform filename
+    \caption{LTspice transient and AC analysis output demonstrating 60Hz noise attenuation and signal amplification.}
+    \label{fig:ltspice_output}
+\end{figure}
 
 \section{High-Resolution Digital Sampling (ADS1115)}
-Following the analog amplification and filtering stages, the biometric signal must be accurately digitized for software analysis. Standard microcontrollers possess internal 10-bit ADCs, which lack the electrical precision required to capture the ultra-fine morphological variations of the P, QRS, and T waves. To overcome this resolution bottleneck, the system utilizes an external \textbf{16-bit ADS1115 Analog-to-Digital Converter}. \\
+Following the analog amplification and filtering stages, the biometric signal must be accurately digitized for software analysis. Standard microcontrollers possess internal 10-bit ADCs, which lack the electrical precision required to capture the ultra-fine morphological variations of the P, QRS, and T waves. To overcome this resolution bottleneck, the system utilizes an external \textbf{16-bit ADS1115 Analog-to-Digital Converter}. \\ \\
 
 Before digitization can occur, the analog waveform must be conditioned. The output from the analog amplification stages swings into both positive and negative voltages. Because the ADS1115 module cannot safely process negative voltages without damage, the signal is first routed through an external DC offset circuit (clamper). This circuit shifts the entire waveform up by exactly +1.5V, ensuring the final output swings safely between 0.5V and 2.5V before entering the ADC. \\
 
@@ -336,7 +378,7 @@ The overall system architecture of CardioKey translates the raw, noisy biologica
 \item \textbf{Data Preprocessing (Digital Filtering):} Software algorithms take over. The raw digital array is cleaned using a 4th-order Butterworth bandpass filter (0.5 Hz to 40 Hz), digital notch filters to reject remaining mains hum, and Wavelet Drift Correction to perfectly center the isoelectric line.
 \item \textbf{Initial Feature Space Formation:} The continuous digital signal is segmented. A thresholding algorithm (such as the Hamilton Segmenter or Pan-Tompkins) identifies the massive R-peaks. Using the R-peak as an anchor, a 150-sample window (representing exactly 0.5 seconds of time) encompassing the entire P-QRS-T complex is mathematically sliced out of the data stream. This is achieved by extracting exactly 48 samples (0.16 seconds) prior to the peak and 102 samples (0.34 seconds) after it. 
 \item \textbf{Feature Space Reduction:} A single heartbeat yields 150 data points, which is still computationally expensive to classify. Principal Component Analysis (PCA) maps this 150-dimensional space down into 30 uncorrelated principal components, representing the unique biometric signature. Exactly ten 30-point PCA signatures are computed per subject for the cardiac cycles.
-\item \textbf{Classification and Recognition:} The dataset of the ten 30-point signatures per subject is divided into a 70-30 split for training and prediction. These signatures are fed into trained Machine Learning models (such as Linear Discriminant Analysis, Nearest Mean Classifier, or Support Vector Machines) to authenticate and match a newly generated 30-point signature against the database of enrolled users. \\ \\
+\item \textbf{Classification and Recognition:} The dataset of the ten 30-point signatures per subject is divided into a 70-30 split for training and prediction. These signatures are fed into trained Machine Learning models (such as Linear Discriminant Analysis, Nearest Mean Classifier, or Support Vector Machines) to authenticate and match a newly generated 30-point signature against the database of enrolled users. \\ 
 \end{enumerate}
 
 \begin{figure}[!h] % The '!' forces LaTeX to try harder to keep it here
@@ -347,6 +389,8 @@ The overall system architecture of CardioKey translates the raw, noisy biologica
 \caption{Detailed Identification System Structure detailing Acquisition to Classification.}
 \label{fig:sys_arch}
 \end{figure}
+
+As illustrated in the detailed system structure above, the biometric identification process is highly sequential, relying on strict feedforward links where the processed data output from one stage serves as the direct input to the subsequent stage. While the generic structure on the left outlines the core conceptual pipeline, the detailed architecture on the right specifies the exact complementary and alternative methods selected for the CardioKey system. The overall success of this biometric system depends on the careful synthesis, composition, and parameter adjustment of these mathematical methods, ensuring that the raw physiological data is perfectly refined before the final identification is executed.
 
 \chapter{SIGNAL PROCESSING AND FILTERING}
 \vspace{10pt}
@@ -407,7 +451,7 @@ Feeding a 150-dimensional array directly into a classifier requires massive proc
 \end{figure}
 
 \chapter{SOFTWARE IMPLEMENTATION AND CLASSIFICATION}
-The software backend, traditionally scripted in Python (utilizing Scikit-Learn and SciPy) or developed as a MATLAB Graphical User Interface (GUI), orchestrates the final authentication logic.
+The backend pairs an Arduino (C++) acquisition pipeline with a custom Python GUI, executing the biometric authentication via \textbf{Tkinter} and \textbf{OS} (interface), \textbf{PySerial} (hardware data), \textbf{NumPy} and \textbf{SciPy} (signal processing), \textbf{Scikit-Learn} (classification), and \textbf{Matplotlib} (visualization).
 
 \section{Classification Algorithms}
 Once the 30-component vector is generated, it must be compared against the secure database of enrolled users. Several classifiers were tested for performance:
@@ -428,6 +472,50 @@ Once the 30-component vector is generated, it must be compared against the secur
 \item Pass the resulting 30-vector into sklearn.svm.SVC to predict User ID.
 \item If User ID matches target, trigger physical relay to unlock door.
 \end{enumerate}
+
+\section{Graphical User Interface (GUI) and System Integration}
+To ensure the "CardioKey" system is user-friendly and operates as a seamless biometric lock, two dedicated Graphical User Interfaces (GUIs) were developed using Python's \textit{Tkinter} library. These interfaces eliminate the need for command-line interactions and provide real-time Matplotlib visualization natively embedded within the application windows.
+
+\subsection{Dynamic Hardware ECG Acquisition (ecg\_record.py)}
+The acquisition interface is designed to bridge the external Arduino hardware with the computer. Instead of hardcoding the sampling rate and duration into the Arduino firmware, this GUI allows dynamic configuration. 
+\begin{itemize}
+    \item \textbf{Dynamic Firmware Updating:} The user selects the COM port, sets the desired sampling rate (e.g., 300 Hz), and sets the recording duration. Upon clicking start, the Python script constructs a configuration string (e.g., "S,300,300") and transmits it over Serial. The Arduino dynamically recalculates its internal microsecond timer to execute the precise polling rhythm.
+    \item \textbf{Multithreaded Acquisition \& Visualization:} The serial reading is isolated to a background thread to prevent the UI from freezing. Once the acquisition completes, the software instantly plots the first 5 seconds of the raw ECG signal to verify electrode quality.
+\end{itemize}
+
+\subsection{Biometric Identification Interface (ecg\_predict.py)}
+The identification interface strictly handles the machine learning pipeline and user authentication. It is divided into two distinct operational phases:
+\begin{itemize}
+    \item \textbf{Model Training:} The system compiles the 150-sample P-QRS-T fragments from the selected database, applies PCA dimensionality reduction, and trains the Linear Discriminant Analysis (LDA) classifier.
+    \item \textbf{Live Subject Prediction:} The user can upload a newly recorded live ECG file. The system processes the signal, extracts the features, and outputs the predicted Subject ID alongside a mathematical match confidence percentage. If no file is uploaded, the system utilizes a "Zero-Knowledge Auto-Demo" fallback, randomly extracting unseen tail-end data from the database to simulate a live hardware attempt and cross-checks the prediction accuracy.
+\end{itemize}
+
+% Insert your screenshot here
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/ecg_record.png} % Add your screenshot to imgs folder
+    \caption{Dynamic Hardware ECG Acquisition Interface.}
+    \label{fig:gui_record}
+\end{figure}
+
+% Insert your screenshot here
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/ecg_predict.png} % Add your screenshot to imgs folder
+    \caption{ECG Biometric Identification Interface displaying prediction confidence and visualization.}
+    \label{fig:gui_predict}
+\end{figure}
+
+\section{MCU Sampling Firmware (sampling\_firmware.ino)}
+The Arduino UNO serves as the central microcontroller managing the high-speed data pipeline between the analog front-end and the external computer [1, 2]. To accurately capture the high-frequency R-peak and preserve the structural integrity of the entire cardiac cycle, the project methodology requires a strict digital sampling rate of exactly 300 Hz [3, 4]. 
+
+To achieve this without the time drift associated with standard blocking functions, the firmware utilizes a precision hardware-level microsecond timer. Key features of this embedded implementation include:
+
+\begin{itemize}
+    \item \textbf{ADC Data Rate Configuration:} The external 16-bit ADS1115 Analog-to-Digital Converter is explicitly configured to operate in continuous mode with its Data Rate register set to 860 Samples Per Second (SPS). Operating the hardware at 860 SPS guarantees that the ADC digitizes the analog voltage significantly faster than the microcontroller's 300 Hz polling cycle, preventing the retrieval of duplicate or stale voltage readings and providing a highly reliable data pipeline.
+    \item \textbf{Dynamic Command Parsing:} Rather than hardcoding the 300 Hz sampling rate and 5-minute duration limit into the C++ sketch, the firmware actively listens for a comma-separated configuration string (e.g., "S,300,300") sent over the Serial port by the Python GUI. 
+    \item \textbf{Microsecond Precision Polling:} Upon receiving the configuration string, the microcontroller dynamically calculates the exact microsecond delay required between readings (e.g., 3,333 microseconds for 300 Hz). It executes a non-blocking timer to strictly poll the I2C bus and stream the digital voltages to the computer without drifting over the 90,000-sample recording session.
+\end{itemize}
 
 \chapter{RESULTS AND DISCUSSION}
 Experimental evaluations of the "CardioKey" methodology were benchmarked utilizing the exercise ECGID database, collected in a laboratory at the South China University of Technology. Unlike the resting-only databases used in early foundational studies, this dataset provides a rigorous framework for evaluating both resting and high-activity biometric states. \\
@@ -500,7 +588,7 @@ The transition from traditional biometrics to CardioKey ECG biometrics introduce
 \section{Future Scope}
 \begin{enumerate}
 \item \textbf{Dynamic HRV Normalization:} Implement advanced mathematical modeling (such as dynamic Bazett's or Framingham formula scaling of the QT interval) within the microcontroller to push the Rest-Ex accuracy from 61\% up to 95\%, solving the exercise problem entirely.
-\item \textbf{Dry Electrode Transition:} Fully phase out the medical Ag/AgCl sticky patches used in Phase 1 prototyping in favor of stainless steel or copper touch-pads to allow seamless, instant user interaction.
+\item \textbf{Dry Electrode Transition:} Fully phase out the medical Ag/AgCl sticky patches used in prototyping in favor of stainless steel or copper touch-pads to allow seamless, instant user interaction.
 \item \textbf{Multi-Lead ECG Integration:} Transition from a single-lead configuration to a more comprehensive multi-lead system (such as an 8-lead or standard 12-lead ECG setup). By capturing the heart's electrical activity from multiple spatial angles simultaneously, the system can extract a higher density of precise anatomical data, significantly increasing the overall accuracy and validity of the biometric authentication.
 \end{enumerate}
 
@@ -540,8 +628,21 @@ While dynamic heart rate variability remains a complex mathematical hurdle for a
 
 \appendix
 \chapter{APPENDIX}
-\section{Source Code and Repository Information}
-The detailed Python scripts utilized for digital signal conditioning, R-peak indexing via SciPy thresholding, Principal Component Analysis (PCA) feature extraction, and classification algorithms referenced in Phase 1 of this report have been independently documented and maintained via the project's digital version control repository. The core pipeline implementation is provided below.
+
+\section{Project Repository and Documentation}
+To ensure full transparency and reproducibility of the "CardioKey" system, all supplementary project files have been consolidated and maintained in an online digital version control repository. 
+
+This repository contains the complete source code for the Arduino embedded firmware, dsp \& classification and the Python Graphical User Interfaces (GUIs), as well as the circuit simulations utilized during the design of the analog front-end. Furthermore, it hosts the extended experimental result datasets (including raw ECG data logs from the hardware testing phases) and comprehensive system documentation.
+
+The complete project repository can be accessed via the following link:
+
+\vspace{10pt}
+\begin{center}
+    \textbf{Project Repository:} \texttt{https://github.com/aaromalonline/cardiokey} % Replace with your actual repo URL
+\end{center}
+\vspace{10pt}
+
+The subsequent sections within this appendix highlight the core programmatic excerpts of the firmware, signal processing, and machine learning classification pipelines referenced throughout this report, through sample code.
 
 \section{Signal Processing and Segmentation}
 The following script handles the digital filtering of the raw analog signal (Butterworth bandpass and notch filtering) and segments the continuous data into 150-sample P-QRS-T windows sampled at 300 Hz.
@@ -680,8 +781,9 @@ def authenticate_users(dataset_X, dataset_Y):
     
     return classifier, pca
 \end{verbatim}
-\section{Dataset Iteration and Real-World Authentication}
-The final section of the pipeline iterates through the dataset files, processes the raw signals, and executes the machine learning authentication model. If a physical hardware recording is not present, the system automatically simulates a zero-knowledge live access attempt by extracting the unseen tail-end data of a random resting file, verifying liveness and confidence probabilities before granting access.
+
+\section{Dataset Iteration and Pipeline Execution}
+The final section of the pipeline iterates through the dataset files (1.txt to 90.txt), mathematically determines the subject ID and activity state based on the odd/even file naming convention, processes the raw signals, and executes the authentication model.
 
 \begin{verbatim}
 # --- 4. DATASET ITERATION & MAIN PIPELINE ---
@@ -691,7 +793,7 @@ if __name__ == "__main__":
     dataset_Y_rest = []
     
     # 45 subjects, 2 files each = 90 total files
-    data_dir = 'ECGIDld2_db'
+    data_dir = "./ecg_data" 
     
     print("Initializing Signal Processing Pipeline...")
     
@@ -706,13 +808,16 @@ if __name__ == "__main__":
         # Determine Subject ID and State
         # Subj 1: 1.txt, 2.txt | Subj 2: 3.txt, 4.txt
         subject_id = (i + 1) // 2
+        
+        # Odd files = Rest, Even files = Exercise
         is_exercise = (i % 2 == 0) 
         
         # Stage 1 & 2: Clean the hardware signal
         clean_signal = preprocess_ecg(raw_signal, fs=300)
         
         # Stage 3: Extract 150-sample biometric fragments
-        beats = segment_beats(clean_signal, fs=300, num_beats=10)
+        beats = segment_beats(clean_signal, fs=300, 
+                              num_beats=10)
         
         # Append to respective datasets
         for beat in beats:
@@ -731,65 +836,97 @@ if __name__ == "__main__":
         clf, pca = authenticate_users(dataset_X_rest, 
                                       dataset_Y_rest)
         
-        # --- 5. REAL-WORLD HARDWARE AUTHENTICATION TEST ---
-        print("\n--- Real-World Hardware Access Attempt ---")
-        live_file = "live_test.txt" 
-        
-        # AUTO-GENERATE SIMULATED LIVE TEST IF MISSING
-        if not os.path.exists(live_file):
-            print(f"'{live_file}' missing. Generating demo...")
-            
-            # Pick a random odd file (Resting data)
-            rand_idx = random.choice(range(1, 91, 2))
-            sim_path = os.path.join(data_dir, f"{rand_idx}.txt")
-            sim_true_id = (rand_idx + 1) // 2
-            
-            print(f"Extracting unseen tail data from Subject "
-                  f"{sim_true_id} to simulate hardware input.")
-            
-            # Load the 5-min recording and grab last 3000 samples
-            # The first 10 beats were used, so tail is untouched!
-            full_sig = np.loadtxt(sim_path)
-            tail_sig = full_sig[-3000:]
-            
-            # Save to simulate Arduino serial output
-            np.savetxt(live_file, tail_sig, fmt="%.6f")
-            
-        # PROCEED WITH AUTHENTICATION
-        if os.path.exists(live_file):
-            print(f"Loading live ECG data from: {live_file}")
-            live_raw = np.loadtxt(live_file)
-            
-            # 1. Clean the hardware signal (Bandpass + Notch)
-            live_clean = preprocess_ecg(live_raw, fs=300)
-            
-            # 2. Extract fragments (we need 1 valid beat)
-            live_beats = segment_beats(live_clean, fs=300, 
-                                       num_beats=1)
-            
-            if len(live_beats) > 0:
-                live_150pt = live_beats
-                
-                # 3. Compress using ALREADY TRAINED PCA
-                live_30pt = pca.transform(live_150pt.reshape(1,-1))
-                
-                # 4. Predict Identity and calculate Confidence
-                predicted_id = clf.predict(live_30pt)
-                probabilities = clf.predict_proba(live_30pt)
-                confidence = np.max(probabilities) * 100 
-                
-                print(f"System Prediction: Subject {predicted_id}")
-                print(f"Match Confidence: {confidence:.2f}%")
-                
-                # 5. Security Threshold Logic
-                if confidence > 80.0:  
-                    print("Authentication Result: ACCESS GRANTED")
-                else:
-                    print("Auth Result: DENIED (Low Confidence)")
-            else:
-                print("Error: No valid heartbeat detected.")
+        # Optional: Generate visualization for Subject 1
+        # plot_signal_conditioning(raw_signal, clean_signal, 
+        #                          beats, subject_id=1)
 \end{verbatim}
+
+\section{Arduino ECG Sampling Firmware}
+This C++ firmware runs on the Arduino UNO. It configures the ADS1115 to 860 SPS and awaits a dynamic configuration string from the Python GUI to set the microsecond timer for precise sampling.
+\begin{verbatim}
+#include <Wire.h>
+#include <Adafruit_ADS1X15.h>
+
+Adafruit_ADS1115 ads;  
+
+unsigned long sampleIntervalUs = 3333; // Default 300Hz
+unsigned long durationMs = 300000;     // Default 5 mins
+unsigned long previousMicros = 0;
+unsigned long startTime = 0;
+bool isRecording = false;
+
+void setup() {
+  Serial.begin(115200); 
+  
+  // Locked to 860 SPS to support variable sampling rates up to 860 Hz
+  ads.setDataRate(RATE_ADS1115_860SPS);
+  
+  if (!ads.begin()) {
+    Serial.println("Error: Failed to initialize ADS1115.");
+    while (1);
+  }
+  
+  Serial.println("System Ready. Waiting for dynamic configuration...");
+}
+
+void loop() {
+  // 1. Wait for configuration command from Python
+  if (!isRecording) {
+    if (Serial.available() > 0) {
+      String command = Serial.readStringUntil('\n');
+      command.trim();
+      
+      // Expected format: "S,RATE_HZ,DURATION_SEC" (e.g., "S,300,300")
+      if (command.startsWith("S,")) {
+        int firstComma = command.indexOf(',');
+        int secondComma = command.indexOf(',', firstComma + 1);
+        
+        if (firstComma > 0 && secondComma > 0) {
+          int rateHz = command.substring(firstComma + 1, secondComma).toInt();
+          int durSec = command.substring(secondComma + 1).toInt();
+          
+          if (rateHz > 0 && durSec > 0) {
+            // Dynamically calculate the timer and duration
+            sampleIntervalUs = 1000000UL / rateHz;
+            durationMs = durSec * 1000UL;
+            
+            isRecording = true;
+            startTime = millis();
+            previousMicros = micros();
+            Serial.println("START");
+          }
+        }
+      }
+    }
+    return;
+  }
+
+  // 2. Check if requested duration has elapsed
+  if (millis() - startTime >= durationMs) {
+    isRecording = false;
+    Serial.println("END");
+    return;
+  }
+
+  // 3. Execute precise timing based on requested Hz
+  unsigned long currentMicros = micros();
+  if (currentMicros - previousMicros >= sampleIntervalUs) {
+    previousMicros += sampleIntervalUs; 
+    
+    int16_t adc0 = ads.readADC_SingleEnded(0);
+    float volts = ads.computeVolts(adc0);
+    Serial.println(volts, 6);
+  }
+}
+\end{verbatim}
+
 \newpage
+% Renames the heading to ALL CAPS and forces it to exactly 16pt
+\renewcommand{\bibname}{\fontsize{16}{19}\selectfont BIBLIOGRAPHY} 
+
+% Adds the Bibliography to the Table of Contents
+\addcontentsline{toc}{chapter}{BIBLIOGRAPHY} 
+
 \begin{thebibliography}{99}
 \bibitem{1} DIY-ECG.pdf. \textit{Make Your Own Electrocardiogram (ECG)}. Circuit Design and AD620 Implementations.
 \bibitem{2} Cui, W., Wang, Z., Li, Y. (2021). ECG-based biometric recognition under exercise and rest situations. \textit{Biomedical Engineering Advances}, 2, 100008.
