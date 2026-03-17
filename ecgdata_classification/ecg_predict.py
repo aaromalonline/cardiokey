@@ -14,7 +14,7 @@ from ecg_core import preprocess_ecg, segment_beats, authenticate_users
 class CardioKeyGUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("CardioKey: ECG Biometric Identification")
+        self.root.title("CardioKey : ECG Biometric Identification")
         self.root.geometry("950x650")
         
         # Apply modern native theme
