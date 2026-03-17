@@ -60,14 +60,17 @@ class ECGRecorderGUI:
         rate_frame = ttk.Frame(left_frame)
         rate_frame.pack(fill=tk.X, pady=2)
         ttk.Label(rate_frame, text="Sampling Rate (Hz):").pack(side=tk.LEFT)
-        self.entry_rate = ttk.Entry(rate_frame, width=10)
-        self.entry_rate.insert(0, "300")
-        self.entry_rate.pack(side=tk.RIGHT)
+        
+        # Dropdown for valid ADS1115 sampling rates
+        valid_rates = ["100", "125", "200", "250", "300", "400", "500", "800", "860"]
+        self.combo_rate = ttk.Combobox(rate_frame, values=valid_rates, width=8)
+        self.combo_rate.set("300") # Default to methodology standard
+        self.combo_rate.pack(side=tk.RIGHT)
         
         dur_frame = ttk.Frame(left_frame)
         dur_frame.pack(fill=tk.X, pady=2)
         ttk.Label(dur_frame, text="Duration (Seconds):").pack(side=tk.LEFT)
-        self.entry_duration = ttk.Entry(dur_frame, width=10)
+        self.entry_duration = ttk.Entry(dur_frame, width=11)
         self.entry_duration.insert(0, "300")
         self.entry_duration.pack(side=tk.RIGHT)
 
@@ -198,12 +201,15 @@ class ECGRecorderGUI:
             
         # Pull parameters safely from GUI
         try:
-            rate_hz = int(self.entry_rate.get().strip())
+            # Now pulling securely from the Combobox
+            rate_hz = int(self.combo_rate.get().strip())
             duration_sec = int(self.entry_duration.get().strip())
+            
             if rate_hz > 860:
                 messagebox.showwarning("Warning", "ADS1115 max capacity is 860 SPS. Values above 860 Hz may cause dropped data.")
+                return
         except ValueError:
-            messagebox.showerror("Error", "Rate and Duration must be valid integers.")
+            messagebox.showerror("Error", "Duration must be a valid integer.")
             return
 
         com_port = self.combo_port.get().strip()
