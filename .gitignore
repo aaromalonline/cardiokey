@@ -28,3 +28,7 @@
 # --- Office/Temporary Lock Files ---
 .~lock.*
 *.tmp
+
+
+ref/
+References/
